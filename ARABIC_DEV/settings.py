@@ -115,6 +115,9 @@ USE_L10N = False
 
 USE_TZ = True
 
+# TODO : config database
+# TODO : check config Templates folder
+# TODO : README.md (root folder)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
