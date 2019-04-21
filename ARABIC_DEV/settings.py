@@ -126,3 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STAR_RATINGS_RATING_MODEL = 'stemmers_comparer.Review'
+

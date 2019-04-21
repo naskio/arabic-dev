@@ -22,8 +22,6 @@ from rest_framework.documentation import include_docs_urls
 
 
 router = routers.DefaultRouter()
-
-router.register(r'stemmers-api', views.StemmersView)
 router.register(r'admin/requirements', views.RequirementViewSet)
 router.register(r'admin/feautures', views.FeatureViewSet)
 router.register(r'admin/authors', views.AuthorViewSet)
@@ -32,14 +30,13 @@ router.register(r'admin/stemmers', views.StemmerViewSet)
 
 
 
-
-# TODO: add Routes
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ratings/', include('star_ratings.urls')),
     path(r'', include(router.urls)),
     path(r'api/docs', include_docs_urls(title='Sayara DZ API')),
-    path('stem_words/<stemmer_name>', views.stem_view, name='stem_words')
-
+    path('stem-words/<stemmer_name>', views.stem_view, name='stem_words'),
+    path('get-stemmer/<stemmer_name>', views.get_stemmer, name='get_stemmer'),
+    path('get-stemmers', views.get_stemmers, name='get_stemmers')
 
 ]

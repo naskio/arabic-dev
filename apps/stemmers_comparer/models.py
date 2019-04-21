@@ -1,5 +1,5 @@
 from django.db import models
-from star_ratings import get_star_ratings_rating_model_name
+from star_ratings.models import AbstractBaseRating
 from django.contrib.contenttypes.fields import GenericRelation
 
 
@@ -38,6 +38,15 @@ class Feature(models.Model):
     def __str__(self):
         return self.content
 
+# Review Model
+class Review(AbstractBaseRating):
+    user_email_address = models.EmailField()
+    user_github_account_link = models.CharField(max_length=255, null=True)
+    comment = models.TextField()
+    comment_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.comment
 
 # Stemmer Model
 class Stemmer(models.Model):
@@ -53,6 +62,7 @@ class Stemmer(models.Model):
     requirements = models.ManyToManyField(Requirement)
     features = models.ManyToManyField(Feature)
     how_to_use = models.TextField(null=True)
+    reviews = GenericRelation(Review, related_query_name='stemmers')
 
     def __str__(self):
        return self.display_name
@@ -61,16 +71,3 @@ class Stemmer(models.Model):
         ordering = ['name']
 
 
-
-
-# Review Model
-class Review(models.Model):
-    stemmer = models.ForeignKey(Stemmer, on_delete=models.CASCADE)
-    ratings = GenericRelation(get_star_ratings_rating_model_name(), related_query_name='stemmers')
-    user_email_address = models.EmailField()
-    user_github_account_link = models.CharField(max_length=255, null=True)
-    comment = models.TextField()
-    comment_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.comment
