@@ -12,23 +12,21 @@ class ShereenKhojaStemmer():
 
     def stem(self, content):
 
-        jarShereenKhojaSegmenter = os.path.join('.', 'KhojaStemmer.jar')
+        #jarShereenKhojaSegmenter = os.path.join('.', 'KhojaStemmer.jar')
 
-        tmp = os.path.join('.', 'tmp')
+        tmp = os.path.join('libs/stemmers/services/shereen_khoja_stemmer', 'tmp')
 
         if os.path.exists(tmp):
             os.system('rm ' + tmp)
 
         open(tmp, 'w', encoding="utf-8").write(content)
 
-        for folder, subs, files in os.walk(('.').encode( 'utf-8')):
-
-                tmpStem = os.path.join('.', 'tmpStem.txt')
+        tmpStem = os.path.join('libs/stemmers/services/shereen_khoja_stemmer', 'tmpStem.txt')
 
         if os.path.exists(tmpStem):
             os.system('rm ' + tmpStem)
 
-        os.system('java -Dfile.encoding=UTF-8 -jar ' + jarShereenKhojaSegmenter + ' ' + tmp + ' ' + tmpStem)
+        os.system('java -Dfile.encoding=UTF-8 -jar libs/stemmers/services/shereen_khoja_stemmer/KhojaStemmer.jar ' + tmp + ' ' + tmpStem)
 
         string = self.readContent(tmpStem)
 

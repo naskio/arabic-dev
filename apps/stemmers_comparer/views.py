@@ -24,15 +24,15 @@ from rest_framework.response import Response
 from libs.stemmers.services.alkhalil_morph_sys_stemmer import alkhalilMorphoSysStemmer
 from libs.stemmers.services.arabic_processing_cog_stemmer import arabicProcessingCogStemmer
 from libs.stemmers.services.arabic_stemming_toolkit.ast_algo1.arabicStemmingToolkitAlgo1  import ArabicStemmingToolkitStemmerAlgo1 as ast_algo1_stemmer
-from libs.stemmers.services.arabic_stemming_toolkit.ast_algo2 import arabicStemmingToolkitAlgo2
-from libs.stemmers.services.arabic_stemming_toolkit.ast_algo3 import arabicStemmingToolkitAlgo3
-from libs.stemmers.services.farasa_stemmer import farasaStemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo2.arabicStemmingToolkitAlgo2 import ArabicStemmingToolkitStemmerAlgo2 as ast_algo2_stemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo3.arabicStemmingToolkitAlgo3 import ArabicStemmingToolkitStemmerAlgo3 as ast_algo3_stemmer
+from libs.stemmers.services.farasa_stemmer.farasaStemmer import FarasaStemmer as farasa_stemmer_
 from libs.stemmers.services.assems_arabic_light_stemmer import assemsArabicLightStemmer
 from libs.stemmers.services.ntlk_stemmer import ntlkIsriStemmer
 from libs.stemmers.services.qutuf_stemmer import qutufStemmer
-from libs.stemmers.services.shereen_khoja_stemmer import shereenKhojaStemmer
+from libs.stemmers.services.shereen_khoja_stemmer.shereenKhojaStemmer import ShereenKhojaStemmer as shereen_khoja_stemmer_
 from libs.stemmers.services.tashaphyne_stemmer import tashaphyneStemmer
-from libs.stemmers.services.lucene_arabic_analyzer import luceneArabicAnalyzerStemmer
+from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
 
 from django.http import HttpResponse
 # Create your views here.
@@ -146,17 +146,15 @@ def arabic_processing_cog_stemmer(string):
 
 
 def ast1(string):
-    return  ast_algo1_stemmer.stem(ast_algo1_stemmer, string)
+    return ast_algo1_stemmer.stem(ast_algo1_stemmer, string)
 
 
 def ast2(string):
-    ast_algo2_stemmer = arabicStemmingToolkitAlgo2.ArabicStemmingToolkitStemmerAlgo2()
-    return  ast_algo2_stemmer.stem(string)
+    return ast_algo2_stemmer.stem(ast_algo2_stemmer, string)
 
 
 def ast3(string):
-    ast_algo3_stemmer = arabicStemmingToolkitAlgo3.ArabicStemmingToolkitStemmerAlgo3()
-    return ast_algo3_stemmer.stem(string)
+    return ast_algo3_stemmer.stem(ast_algo3_stemmer, string)
 
 
 def assems_arabic_light_stemmer(string):
@@ -164,30 +162,28 @@ def assems_arabic_light_stemmer(string):
 
 
 def farasa_stemmer(string):
-    farasa_stemmer = farasaStemmer.FarasaStemmer()
-    return farasa_stemmer.stem(string.encode().decode())
+    return farasa_stemmer_.stem(farasa_stemmer_, string.encode().decode())
 
 
 def lucene_arabic_analyzer_stemmer(string):
-    lucene_arabic_analyzer_stemmer = luceneArabicAnalyzerStemmer.LuceneArabicAnalyzerStemmer()
-    return lucene_arabic_analyzer_stemmer.stem(string.encode().decode())
+    return lucene_arabic_analyzer_stemmer_.stem(lucene_arabic_analyzer_stemmer_, string.encode().decode())
 
 
 def ntlk_stemmer(string):
     return ntlkIsriStemmer.stem(string.encode().decode())
 
 
-
 def qutuf_stemmer(string):
     return qutufStemmer.stem(string)
 
+
 def shereen_khoja_stemmer(string):
-    shereen_khoja_stemmer = shereenKhojaStemmer.ShereenKhojaStemmer()
-    return shereen_khoja_stemmer.stem(string)
+    return shereen_khoja_stemmer_.stem(shereen_khoja_stemmer_, string)
 
 
 def tashaphyne_stemmer(string):
     return tashaphyneStemmer.stem(string.encode().decode())
+
 
 def all_stemmers(string):
 
@@ -245,7 +241,6 @@ def switch(case):
 @api_view(['GET', 'POST'])
 def stem_view(request, stemmer_name):
     string_dict = request.data.dict()
-    print(string_dict["string"])
     stem_words = switch(stemmer_name)(string_dict["string"])
     return Response({"stem_words": stem_words})
     #return render(request, 'template.html', {'stem_words': stem_words})

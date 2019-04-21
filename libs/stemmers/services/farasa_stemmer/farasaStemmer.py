@@ -12,23 +12,20 @@ class FarasaStemmer():
 
     def stem(self, content):
 
-        jarFarasaSegmenter = os.path.join('.', 'FarasaSegmenterJar.jar')
+        #jarFarasaSegmenter = os.path.join('.', 'FarasaSegmenterJar.jar')
 
-        tmp = os.path.join('.', 'tmp')
+        tmp = os.path.join('libs/stemmers/services/farasa_stemmer', 'tmp')
 
         if os.path.exists(tmp):
             os.system('rm ' + tmp)
 
         open(tmp, 'w', encoding="utf-8").write(content)
-
-        for folder, subs, files in os.walk(('.').encode( 'utf-8')):
-
-                tmpStem = os.path.join('.', 'tmpLemma.txt')
+        tmpStem = os.path.join('libs/stemmers/services/farasa_stemmer', 'tmpLemma.txt')
 
         if os.path.exists(tmpStem):
             os.system('rm ' + tmpStem)
 
-        os.system('java -Dfile.encoding=UTF-8 -jar ' + jarFarasaSegmenter + ' -l true -i ' + tmp + ' -o ' + tmpStem)
+        os.system('java -Dfile.encoding=UTF-8 -jar libs/stemmers/services/farasa_stemmer/FarasaSegmenterJar.jar  -l true -i ' + tmp + ' -o ' + tmpStem)
 
         string = self.readContent(tmpStem)
 

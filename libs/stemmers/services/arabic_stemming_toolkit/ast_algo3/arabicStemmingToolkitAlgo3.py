@@ -12,23 +12,21 @@ class ArabicStemmingToolkitStemmerAlgo3():
 
     def stem(self, content):
 
-        jarASTalgo3 = os.path.join('.', 'AST3.jar')
+        #jarASTalgo3 = os.path.join('Arabic-Stemmers/libs/stemmers/services/arabic_stemming_toolkit/ast_algo3', 'AST3.jar')
 
-        tmp = os.path.join('.', 'tmp')
+        tmp = os.path.join('libs/stemmers/services/arabic_stemming_toolkit/ast_algo3', 'tmp')
 
         if os.path.exists(tmp):
             os.system('rm ' + tmp)
 
         open(tmp, 'w', encoding="utf-8").write(content)
 
-        for folder, subs, files in os.walk(('.').encode( 'utf-8')):
-
-                tmpStem = os.path.join('.', 'tmpStem.txt')
+        tmpStem = os.path.join('libs/stemmers/services/arabic_stemming_toolkit/ast_algo3', 'tmpStem.txt')
 
         if os.path.exists(tmpStem):
             os.system('rm ' + tmpStem)
 
-        os.system('java -Dfile.encoding=UTF-8 -jar ' + jarASTalgo3 + ' ' + tmp +' '+ tmpStem)
+        os.system('java -Dfile.encoding=UTF-8 -jar libs/stemmers/services/arabic_stemming_toolkit/ast_algo3/AST3.jar ' + tmp +' '+ tmpStem)
 
         lines = self.readContent(tmpStem)
 
