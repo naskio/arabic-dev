@@ -37,6 +37,7 @@ urlpatterns = [
     path(r'api/docs', include_docs_urls(title='Sayara DZ API')),
     path('stem-words/<stemmer_name>', views.stem_view, name='stem_words'),
     path('get-stemmer/<stemmer_name>', views.get_stemmer, name='get_stemmer'),
-    path('get-stemmers', views.get_stemmers, name='get_stemmers')
+    path('get-stemmers', views.get_stemmers, name='get_stemmers'),
+    path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers')
 
 ]

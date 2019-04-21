@@ -38,9 +38,15 @@ from django.http import HttpResponse
 # Create your views here.
 
 @api_view(['GET'])
-def get_stemmers(request):
+def get_stemmers(request, programming_language=''):
 
-    stemmers = models.Stemmer.objects.all()
+    if programming_language=='':
+        stemmers = models.Stemmer.objects.all()
+
+    else:
+        stemmers = models.Stemmer.objects.filter(programming_languages__name__iexact=programming_language)
+        # substring search
+        # stemmers = models.Stemmer.objects.filter(programming_languages__name__icontains=programming_language)
 
     stemmers_dict =[]
     for stemmer in stemmers:
