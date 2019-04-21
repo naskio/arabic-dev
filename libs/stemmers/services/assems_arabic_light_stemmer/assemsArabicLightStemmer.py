@@ -1,4 +1,4 @@
-from snowballstemmer import stemmer
+from libs.stemmers.services.assems_arabic_light_stemmer.snowballstemmer import stemmer
 
 
 def stem(string):

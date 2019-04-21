@@ -11,7 +11,7 @@ class ArabicStemmingToolkitStemmerAlgo1():
             return open(article, 'r', encoding="utf-8").read()
 
     def stem(self, content):
-
+        print(os.chdir(os.path.dirname(os.getcwd())))
         jarASTalgo1 = os.path.join('.', 'AST1.jar')
 
         tmp = os.path.join('.', 'tmp')
@@ -32,8 +32,10 @@ class ArabicStemmingToolkitStemmerAlgo1():
 
         lines = self.readContent(tmpStem)
 
-        os.system('rm ' + tmpStem)
-        os.system('rm ' + tmp)
+        print(lines)
+
+        #os.system('rm ' + tmpStem)
+        #os.system('rm ' + tmp)
 
         words = lines.split()
         stems_list = []

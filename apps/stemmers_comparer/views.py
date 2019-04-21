@@ -1,8 +1,40 @@
+"""ARABIC_DEV Stemmers name
+those names are used to choose which stemmer to execute
+    0 --> alkhalilMorphoSys ---> alkhalilMorphoSysStemmer
+    1 --> arabicProcessingCog --> arabicProcessingCogStemmer
+    2 --> AST1 --> arabic_stemming_toolkit_Algo1
+    3 --> AST2 --> arabic_stemming_toolkit_Algo2
+    4 --> AST3 --> arabic_stemming_toolkit_Algo3
+    5 --> assemsArabic --> assems_arabic_light_stemmer
+    6 --> farasa --> farasa_stemmer
+    7 --> luceneArabicAnalyzer --> luceneArabicAnalyzerStemmer
+    8 --> ntlk --> ntlk_isri_stemmer
+    9 --> qutuf --> qutuf_stemmer
+    10 --> shereenekhoja --> shereen_kohja_stemmer
+    11 --> tashaphyne --> tashaphyne_stemmer
+"""
+
 from django.shortcuts import render
 from apps.stemmers_comparer import models
-from rest_framework.views import APIView
-from rest_framework import serializers, viewsets
+from rest_framework import  viewsets
 from ARABIC_DEV import  serializers
+from rest_framework.generics import ListAPIView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from libs.stemmers.services.alkhalil_morph_sys_stemmer import alkhalilMorphoSysStemmer
+from libs.stemmers.services.arabic_processing_cog_stemmer import arabicProcessingCogStemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo1.arabicStemmingToolkitAlgo1  import ArabicStemmingToolkitStemmerAlgo1 as ast_algo1_stemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo2 import arabicStemmingToolkitAlgo2
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo3 import arabicStemmingToolkitAlgo3
+from libs.stemmers.services.farasa_stemmer import farasaStemmer
+from libs.stemmers.services.assems_arabic_light_stemmer import assemsArabicLightStemmer
+from libs.stemmers.services.ntlk_stemmer import ntlkIsriStemmer
+from libs.stemmers.services.qutuf_stemmer import qutufStemmer
+from libs.stemmers.services.shereen_khoja_stemmer import shereenKhojaStemmer
+from libs.stemmers.services.tashaphyne_stemmer import tashaphyneStemmer
+from libs.stemmers.services.lucene_arabic_analyzer import luceneArabicAnalyzerStemmer
+
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -73,7 +105,6 @@ class StemmersView(viewsets.ModelViewSet):
             stemmers_dict.append(stemmer_dict)
         #print(stemmers_dict)
         return render(request, 'template.html', {'stemmers': stemmers_dict})
-    
 
 
 class RequirementViewSet(viewsets.ModelViewSet):
@@ -106,8 +137,120 @@ class StemmerViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.StemmerSerializer
 
 
+def alkhalil_morpho_sys_stemmer(string):
+    return alkhalilMorphoSysStemmer.stem(string)
 
-# TODO: add API for specific stemmer
+
+def arabic_processing_cog_stemmer(string):
+    return arabicProcessingCogStemmer.stem(string)
+
+
+def ast1(string):
+    return  ast_algo1_stemmer.stem(ast_algo1_stemmer, string)
+
+
+def ast2(string):
+    ast_algo2_stemmer = arabicStemmingToolkitAlgo2.ArabicStemmingToolkitStemmerAlgo2()
+    return  ast_algo2_stemmer.stem(string)
+
+
+def ast3(string):
+    ast_algo3_stemmer = arabicStemmingToolkitAlgo3.ArabicStemmingToolkitStemmerAlgo3()
+    return ast_algo3_stemmer.stem(string)
+
+
+def assems_arabic_light_stemmer(string):
+    return assemsArabicLightStemmer.stem(string.encode().decode())
+
+
+def farasa_stemmer(string):
+    farasa_stemmer = farasaStemmer.FarasaStemmer()
+    return farasa_stemmer.stem(string.encode().decode())
+
+
+def lucene_arabic_analyzer_stemmer(string):
+    lucene_arabic_analyzer_stemmer = luceneArabicAnalyzerStemmer.LuceneArabicAnalyzerStemmer()
+    return lucene_arabic_analyzer_stemmer.stem(string.encode().decode())
+
+
+def ntlk_stemmer(string):
+    return ntlkIsriStemmer.stem(string.encode().decode())
+
+
+
+def qutuf_stemmer(string):
+    return qutufStemmer.stem(string)
+
+def shereen_khoja_stemmer(string):
+    shereen_khoja_stemmer = shereenKhojaStemmer.ShereenKhojaStemmer()
+    return shereen_khoja_stemmer.stem(string)
+
+
+def tashaphyne_stemmer(string):
+    return tashaphyneStemmer.stem(string.encode().decode())
+
+def all_stemmers(string):
+
+    alkhalilMorphoSys_dict = alkhalil_morpho_sys_stemmer(string)
+    arabicProcessingCog_dict = arabic_processing_cog_stemmer(string)
+    AST1_dict = ast1(string)
+    AST2_dict = ast2(string)
+    AST3_dict = ast3(string)
+    assemsArabic_dict = assems_arabic_light_stemmer(string)
+    farasa_dict = farasa_stemmer(string)
+    luceneArabicAnalyzer_dict = lucene_arabic_analyzer_stemmer(string)
+    ntlk_dict = ntlk_stemmer(string)
+    qutuf_dict = qutuf_stemmer(string)
+    shereenekhoja_dict = shereen_khoja_stemmer(string)
+    tashaphyne_dict = tashaphyne_stemmer(string)
+
+    stem_result = [{
+        "alkhalilMorphoSys": alkhalilMorphoSys_dict,
+        "arabicProcessingCog": arabicProcessingCog_dict,
+        "AST1": AST1_dict,
+        "AST2": AST2_dict,
+        "AST3": AST3_dict,
+        "assemsArabic": assemsArabic_dict,
+        "farasa": farasa_dict,
+        "luceneArabicAnalyzer": luceneArabicAnalyzer_dict,
+        "ntlk": ntlk_dict,
+        "qutuf": qutuf_dict,
+        "shereenekhoja": shereenekhoja_dict,
+        "tashaphyne": tashaphyne_dict
+    }]
+    return stem_result
+
+
+def pass_string(string):
+    return string
+
+def switch(case):
+    return {
+        "alkhalilMorphoSys":alkhalil_morpho_sys_stemmer,
+        "arabicProcessingCog":arabic_processing_cog_stemmer,
+        "AST1": ast1,
+        "AST2": ast2,
+        "AST3": ast3,
+        "assemsArabic": assems_arabic_light_stemmer,
+        "farasa": farasa_stemmer,
+        "luceneArabicAnalyzer": lucene_arabic_analyzer_stemmer,
+        "ntlk": ntlk_stemmer,
+        "qutuf": qutuf_stemmer,
+        "shereenekhoja": shereen_khoja_stemmer,
+        "tashaphyne": tashaphyne_stemmer,
+        "all": all_stemmers
+    }.get(case, pass_string)
+
+
+@api_view(['GET', 'POST'])
+def stem_view(request, stemmer_name):
+    string_dict = request.data.dict()
+    print(string_dict["string"])
+    stem_words = switch(stemmer_name)(string_dict["string"])
+    return Response({"stem_words": stem_words})
+    #return render(request, 'template.html', {'stem_words': stem_words})
+
+
 
 # TODO: add view for home.html page
 # TODO: add view for stemmer.html page

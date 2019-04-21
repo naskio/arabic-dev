@@ -27,7 +27,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.Author
-		fields = ('id', 'first_name', 'last_name')
+		fields = ('id', 'first_name', 'last_name', 'github_account_link', 'website')
 
 
 class ProgrammingLanguageSerializer(serializers.ModelSerializer):
@@ -46,5 +46,5 @@ class StemmerSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.Stemmer
-		fields = ('name', 'display_name', 'authors', 'programming_languages', 'requirements', 'features', 'how_to_use')
+		fields = ('name', 'display_name', 'authors', 'license', 'description', 'documentation_link', 'download_link', 'programming_languages', 'requirements', 'features', 'how_to_use')
 

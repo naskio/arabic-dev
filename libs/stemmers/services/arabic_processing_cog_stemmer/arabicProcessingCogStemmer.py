@@ -1,5 +1,5 @@
-from arabic_processing_cog.tokenization import ArabicTokenizer as arabic_tokenizer
-from arabic_processing_cog.stemming import Light10stemmer as arabic_processing_cog_stemmer
+from libs.stemmers.services.arabic_processing_cog_stemmer.arabic_processing_cog.tokenization import ArabicTokenizer as arabic_tokenizer
+from libs.stemmers.services.arabic_processing_cog_stemmer.arabic_processing_cog.stemming import Light10stemmer as arabic_processing_cog_stemmer
 
 
 def stem(string):

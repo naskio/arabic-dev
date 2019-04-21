@@ -39,6 +39,7 @@ urlpatterns = [
     path('ratings/', include('star_ratings.urls')),
     path(r'', include(router.urls)),
     path(r'api/docs', include_docs_urls(title='Sayara DZ API')),
+    path('stem_words/<stemmer_name>', views.stem_view, name='stem_words')
 
 
 ]
