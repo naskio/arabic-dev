@@ -7,8 +7,8 @@ from django.contrib.contenttypes.fields import GenericRelation
 class Author(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    github_account_link  =  models.CharField(max_length=255)
-    website = models.CharField(max_length=255)
+    github_account_link = models.CharField(max_length=255, null=True)
+    website = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.first_name
@@ -54,11 +54,13 @@ class Stemmer(models.Model):
     features = models.ManyToManyField(Feature)
     how_to_use = models.TextField(null=True)
 
+    def __str__(self):
+       return self.display_name
+
     class Meta:
         ordering = ['name']
 
-    def __str__(self):
-       return self.display_name
+
 
 
 # Review Model

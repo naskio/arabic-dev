@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'star_ratings'
+    'star_ratings',
+    'apps.stemmers_comparer'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'ARABIC_DEV.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['ARABIC_DEV'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

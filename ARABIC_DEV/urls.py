@@ -15,6 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from apps.stemmers_comparer import views
+from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
+
+
+
+router = routers.DefaultRouter()
+
+router.register(r'stemmers-api', views.StemmersView)
+router.register(r'admin/requirements', views.RequirementViewSet)
+router.register(r'admin/feautures', views.FeatureViewSet)
+router.register(r'admin/authors', views.AuthorViewSet)
+router.register(r'admin/languages', views.ProgrammingLanguageViewSet)
+router.register(r'admin/stemmers', views.StemmerViewSet)
+
 
 
 
@@ -22,5 +37,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ratings/', include('star_ratings.urls')),
+    path(r'', include(router.urls)),
+    path(r'api/docs', include_docs_urls(title='Sayara DZ API')),
+
 
 ]
