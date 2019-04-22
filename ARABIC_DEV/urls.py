@@ -18,6 +18,7 @@ from django.urls import path, include
 from apps.stemmers_comparer import views
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
+from django.conf.urls import include, url
 
 
 
@@ -32,12 +33,11 @@ router.register(r'admin/stemmers', views.StemmerViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ratings/', include('star_ratings.urls')),
     path(r'', include(router.urls)),
     path(r'api/docs', include_docs_urls(title='Sayara DZ API')),
     path('stem-words/<stemmer_name>', views.stem_view, name='stem_words'),
     path('get-stemmer/<stemmer_name>', views.get_stemmer, name='get_stemmer'),
     path('get-stemmers', views.get_stemmers, name='get_stemmers'),
-    path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers')
+    path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers'),
 
 ]

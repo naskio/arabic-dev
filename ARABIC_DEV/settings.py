@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'star_ratings',
     'apps.stemmers_comparer'
 ]
 
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'ARABIC_DEV.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['ARABIC_DEV'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,5 +126,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STAR_RATINGS_RATING_MODEL = 'stemmers_comparer.Review'
+
+#STAR_RATINGS_RATING_MODEL = 'stemmers_comparer.Review'
 

@@ -1,0 +1,11 @@
+{% extends "base.html" %} 
+             
+            {% block content %} 
+             
+            <h2>stemmer :</h2> <br>
+            <ul> 
+            {% for s in stemmers %}
+                <li>{{ s.name }}</li>
+            {% endfor %} 
+            </ul> 
+            {% endblock %}

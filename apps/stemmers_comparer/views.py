@@ -13,7 +13,7 @@ those names are used to choose which stemmer to execute
     10 --> shereenekhoja --> shereen_kohja_stemmer
     11 --> tashaphyne --> tashaphyne_stemmer
 """
-
+from django.views.generic import DetailView
 from django.shortcuts import render
 from apps.stemmers_comparer import models
 from rest_framework import  viewsets
@@ -105,8 +105,8 @@ def get_stemmers(request, programming_language=''):
         )
         stemmers_dict.append(stemmer_dict)
     #print(stemmers_dict)
-    return Response({"stem_words": stemmers_dict})
-    #return render(request, 'template.html', {'stemmers': stemmers_dict})
+    #return Response({"stem_words": stemmers_dict})
+    return render(request, 'stemmers.html', {'stemmers': stemmers_dict})
 
 
 @api_view(['GET'])
@@ -168,8 +168,8 @@ def get_stemmer(request, stemmer_name):
     )
 
     #print(stemmers_dict)
-    return Response({"stemmer_dict": stemmer_dict})
-    #return render(request, 'template.html', {'stemmer': stemmer_dict})
+    #return Response({"stemmer_dict": stemmer_dict})
+    return render(request, 'stemmer.html', {'stemmer': stemmer_dict})
 
 class RequirementViewSet(viewsets.ModelViewSet):
 
@@ -308,8 +308,6 @@ def stem_view(request, stemmer_name):
     stem_words = switch(stemmer_name)(string_dict["string"])
     return Response({"stem_words": stem_words})
     #return render(request, 'template.html', {'stem_words': stem_words})
-
-
 
 
 
