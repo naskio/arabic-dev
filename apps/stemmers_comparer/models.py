@@ -5,6 +5,7 @@ from model_utils.models import TimeStampedModel
 import swapper
 from . import get_star_ratings_rating_model_name, get_star_ratings_rating_model
 
+
 # Author Model
 class Author(models.Model):
     first_name = models.CharField(max_length=50)
@@ -28,6 +29,7 @@ class ProgrammingLanguage(models.Model):
 # Requirement Model
 class Requirement(models.Model):
     content = models.TextField()
+    url = models.URLField(null=True)
 
     def __str__(self):
         return self.content
@@ -35,7 +37,7 @@ class Requirement(models.Model):
 
 # Feature Model
 class Feature(models.Model):
-    content = models.TextField()
+    content = models.TextField(max_length=80)
 
     def __str__(self):
         return self.content
@@ -44,20 +46,20 @@ class Feature(models.Model):
 # Stemmer Model
 class Stemmer(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
-    display_name = models.CharField(max_length=50)
+    display_name = models.CharField(max_length=80)
     is_enabled = models.BooleanField(default=True)
     authors = models.ManyToManyField(Author)
-    license = models.CharField(max_length=50, null=True)
+    license = models.CharField(max_length=80, null=True)
     description = models.TextField(null=True)
-    documentation_link = models.CharField(max_length=255, null=True)
-    download_link = models.CharField(max_length=255, null=True)
+    documentation_link = models.URLField(null=True)
+    download_link = models.URLField(null=True)
     programming_languages = models.ManyToManyField(ProgrammingLanguage)
     requirements = models.ManyToManyField(Requirement)
     features = models.ManyToManyField(Feature)
     how_to_use = models.TextField(null=True)
 
     def __str__(self):
-       return self.display_name
+        return self.display_name
 
     class Meta:
         ordering = ['name']
@@ -79,7 +81,9 @@ class RatingManager(models.Manager):
         else:
 
             rating, created = self.get_or_create(stemmer=instance)
-            return UserRating.objects.create(user_email_address=user_email_address, user_github_account_link=user_github_account_link, comment=comment, score=score, rating=rating).rating
+            return UserRating.objects.create(user_email_address=user_email_address,
+                                             user_github_account_link=user_github_account_link, comment=comment,
+                                             score=score, rating=rating).rating
 
 
 # Rate Model
@@ -123,24 +127,19 @@ class Rate(models.Model):
 
 
 class Rating(Rate):
-
     class Meta(Rate.Meta):
-
         swappable = swapper.swappable_setting('stemmers_comparer', 'Rating')
 
 
 class UserRatingManager(models.Manager):
 
     def for_instance_by_user(self, instance, user_email_address):
-
         user = self.filter(user_email_address__iexact=user_email_address, rating__stemmer=instance)
         return user
 
     def bulk_create(self, objs, batch_size=None):
-
         objs = super(UserRatingManager, self).bulk_create(objs, batch_size=batch_size)
         for rating in set(o.rating for o in objs):
-
             rating.calculate()
 
         return objs
@@ -148,7 +147,6 @@ class UserRatingManager(models.Manager):
 
 # UserRating Model
 class UserRating(TimeStampedModel):
-
     """
     An individual rating of a user against a model.
     """
@@ -156,8 +154,10 @@ class UserRating(TimeStampedModel):
     user_github_account_link = models.CharField(max_length=255, null=True)
     comment = models.TextField()
     comment_date = models.DateTimeField(auto_now=True)
+    # TODO: check between 0 and 5
     score = models.PositiveSmallIntegerField()
-    rating = models.ForeignKey(get_star_ratings_rating_model_name(), related_name='user_ratings', on_delete=models.CASCADE)
+    rating = models.ForeignKey(get_star_ratings_rating_model_name(), related_name='user_ratings',
+                               on_delete=models.CASCADE)
 
     objects = UserRatingManager()
 
@@ -166,5 +166,3 @@ class UserRating(TimeStampedModel):
 
     def __str__(self):
         return self.user_email_address
-
-
