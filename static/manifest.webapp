@@ -1,0 +1,25 @@
+{
+	"version": "1.0.0",
+	"name": "lmkheyar-frontend",
+	"launch_path": "/index",
+	"description": "VTC comparateur, front end (bootstrap, jquery, sass, ES6)",
+	"icons": {
+		"128": "/static/resources/icon-128x128.png"
+	},
+	"developer": {
+		"name": "Mehdi Nassim KHODJA",
+		"url": "https://github.com/MehdiNassim"
+	},
+	"installs_allowed_from": [
+		"*"
+	],
+	"default_locale": "dz",
+	"permissions": {
+	},
+	"locales": {
+		"fr": {
+			"name": "Lmkheyar",
+			"description": "VTC comparateur"
+		}
+	}
+}

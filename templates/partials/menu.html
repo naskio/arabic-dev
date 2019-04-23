@@ -1,0 +1,29 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <a class="navbar-brand mr-5 ml-5" href="{% url 'HOME_URL' %}">
+        <div>
+            <!--<img class="align-middle mr-4" src="logo.png" width="56" height="56"-->
+            <!--alt="Arabic.dev - arabic language toolbox for developers"/>-->
+            <h1 class="d-inline align-middle">Arabic.dev</h1>
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item mr-2 ml-2 {% if page == 'home' %}active{% endif %}">
+                <a class="nav-link text-center" href="{% url 'HOME_URL' %}">
+                    <h5 class="d-inline align-middle">Home</h5>
+                    {% if page == 'home' %}<span class="sr-only">(current)</span>{% endif %}
+                </a>
+            </li>
+            <li class="nav-item mr-2 ml-2 {% if page == 'stemmers' %}active{% endif %}">
+                <a class="nav-link text-center" href="{% url 'STEMMERS_URL' %}">
+                    <h5 class="d-inline align-middle">Stemmers</h5>
+                    {% if page == 'stemmers' %}<span class="sr-only">(current)</span>{% endif %}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

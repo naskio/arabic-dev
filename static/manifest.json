@@ -1,0 +1,29 @@
+{
+  "name": "arabic.dev",
+  "short_name": "AR_DEV",
+  "icons": [
+    {
+      "src": "/static/resources/arabic_dev.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/resources/arabic_dev.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/resources/arabic_dev.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/resources/arabic_dev.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FFFFFF"
+}
