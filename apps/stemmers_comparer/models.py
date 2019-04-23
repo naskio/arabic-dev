@@ -10,8 +10,8 @@ from . import get_star_ratings_rating_model_name, get_star_ratings_rating_model
 class Author(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    github_account_link = models.CharField(max_length=255, null=True)
-    website = models.CharField(max_length=255, null=True)
+    github_account_link = models.CharField(max_length=255, null=True, blank=True)
+    website = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.first_name
@@ -20,7 +20,7 @@ class Author(models.Model):
 # ProgrammingLanguage Model
 class ProgrammingLanguage(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
-    website = models.CharField(max_length=255)
+    website = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -28,8 +28,8 @@ class ProgrammingLanguage(models.Model):
 
 # Requirement Model
 class Requirement(models.Model):
-    content = models.TextField()
-    url = models.URLField(null=True)
+    content = models.CharField(max_length=80)
+    url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.content
@@ -37,7 +37,7 @@ class Requirement(models.Model):
 
 # Feature Model
 class Feature(models.Model):
-    content = models.TextField(max_length=80)
+    content = models.CharField(max_length=80)
 
     def __str__(self):
         return self.content
@@ -49,14 +49,14 @@ class Stemmer(models.Model):
     display_name = models.CharField(max_length=80)
     is_enabled = models.BooleanField(default=True)
     authors = models.ManyToManyField(Author)
-    license = models.CharField(max_length=80, null=True)
-    description = models.TextField(null=True)
-    documentation_link = models.URLField(null=True)
-    download_link = models.URLField(null=True)
+    license = models.CharField(max_length=80, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    documentation_link = models.URLField(null=True, blank=True)
+    download_link = models.URLField(null=True, blank=True)
     programming_languages = models.ManyToManyField(ProgrammingLanguage)
     requirements = models.ManyToManyField(Requirement)
     features = models.ManyToManyField(Feature)
-    how_to_use = models.TextField(null=True)
+    how_to_use = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.display_name
@@ -151,8 +151,8 @@ class UserRating(TimeStampedModel):
     An individual rating of a user against a model.
     """
     user_email_address = models.EmailField(unique=True)
-    user_github_account_link = models.CharField(max_length=255, null=True)
-    comment = models.TextField()
+    user_github_account_link = models.CharField(max_length=255, null=True, blank=True)
+    comment = models.TextField(max_length=1500)
     comment_date = models.DateTimeField(auto_now=True)
     # TODO: check between 0 and 5
     score = models.PositiveSmallIntegerField()
