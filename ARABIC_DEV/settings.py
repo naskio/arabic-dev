@@ -120,10 +120,9 @@ USE_TZ = True
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
-<<<<<<< HEAD
+
 STEMMERS_COMPARER_RATING_MODEL='stemmers_comparer.Rating'
-#STAR_RATINGS_RATING_MODEL = 'stemmers_comparer.Review'
-=======
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -136,6 +135,5 @@ STATICFILES_DIRS = [
 # ]
 
 SECURE_SSL_REDIRECT = not DEBUG
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
 
-# STAR_RATINGS_RATING_MODEL = 'stemmers_comparer.Review'
+
