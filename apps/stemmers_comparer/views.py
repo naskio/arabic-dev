@@ -36,13 +36,10 @@ from libs.stemmers.services.qutuf_stemmer import qutufStemmer
 from libs.stemmers.services.shereen_khoja_stemmer.shereenKhojaStemmer import \
     ShereenKhojaStemmer as shereen_khoja_stemmer_
 from libs.stemmers.services.tashaphyne_stemmer import tashaphyneStemmer
-<<<<<<< HEAD
-from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
-=======
+
 from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import \
     LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
-from . import get_star_ratings_rating_model
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
+
 from django.http import HttpResponse
 
 
@@ -123,15 +120,10 @@ def get_stemmers(request, programming_language=''):
             rating=rating.to_dict()
         )
         stemmers_dict.append(stemmer_dict)
-<<<<<<< HEAD
+
     #print(stemmers_dict)
     return Response({"stem_words": stemmers_dict})
     #return render(request, 'stemmers.html', {'stemmers': stemmers_dict})
-=======
-    # print(stemmers_dict)
-    # return Response({"stem_words": stemmers_dict})
-    return render(request, 'stemmers.html', {'stemmers': stemmers_dict})
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
 
 
 @api_view(['GET'])
@@ -345,17 +337,13 @@ def stem_view(request, stemmer_name):
 
 
 @api_view(['GET', 'POST'])
-<<<<<<< HEAD
 def rate(request, stemmer_name=None):
-=======
-def rate(request):
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
+
     if request.method == 'POST':
         string_dict = request.data.dict()
 
         stemmer = models.Stemmer.objects.get(name=string_dict['stemmer_name'])
 
-<<<<<<< HEAD
         rating = models.Rating.objects.rate(
                             instance=stemmer,
                             score=int(string_dict['score']),
@@ -363,16 +351,10 @@ def rate(request):
                             user_github_account_link=string_dict['user_github_account_link'],
                             comment=string_dict['comment'])
 
-=======
-            instance=stemmer,
-            score=string_dict['score'],
-            user_email_address=string_dict['user_email_address'],
-            user_github_account_link=string_dict['user_github_account_link'],
-            comment=string_dict['comment'])
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
         rating.calculate()
         rating_dict = rating.to_dict()
         return Response({"rating": rating_dict})
+
     else:#request.method == 'GET'
 
         ratings = models.Rating.objects.filter(stemmer__name=stemmer_name)
@@ -392,10 +374,3 @@ def rate(request):
             users_ratings_dict.append(user_ratings_dict)
 
         return Response({"users_ratings": users_ratings_dict})
-
-
-
-
-
-# TODO: add view for home.html page
-# TODO: add view for stemmer.html page

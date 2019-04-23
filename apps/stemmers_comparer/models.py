@@ -129,58 +129,29 @@ class Rate(models.Model):
 
 
 class Rating(Rate):
-<<<<<<< HEAD
 
     def __str__(self):
         return str(self.id)
-
-=======
-    class Meta(Rate.Meta):
-        swappable = swapper.swappable_setting('stemmers_comparer', 'Rating')
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
 
 
 class UserRatingManager(models.Manager):
 
     def for_instance_by_user(self, instance, user_email_address):
-<<<<<<< HEAD
 
         rating = self.filter(user_email_address=user_email_address, rating__stemmer=instance)
         return rating
-=======
-        user = self.filter(user_email_address__iexact=user_email_address, rating__stemmer=instance)
-        return user
 
-    def bulk_create(self, objs, batch_size=None):
-        objs = super(UserRatingManager, self).bulk_create(objs, batch_size=batch_size)
-        for rating in set(o.rating for o in objs):
-            rating.calculate()
-
-        return objs
-
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
 
 # UserRating Model
 class UserRating(TimeStampedModel):
     """
     An individual rating of a user against a model.
     """
-<<<<<<< HEAD
     user_email_address = models.EmailField()
     user_github_account_link = models.CharField(max_length=255, null=True)
     comment = models.TextField()
     score = models.CharField(max_length=5)
     rating = models.ForeignKey('rating', related_name='user_ratings', on_delete=models.CASCADE)
-=======
-    user_email_address = models.EmailField(unique=True)
-    user_github_account_link = models.CharField(max_length=255, null=True, blank=True)
-    comment = models.TextField(max_length=1500)
-    comment_date = models.DateTimeField(auto_now=True)
-    # TODO: check between 0 and 5
-    score = models.PositiveSmallIntegerField()
-    rating = models.ForeignKey(get_star_ratings_rating_model_name(), related_name='user_ratings',
-                               on_delete=models.CASCADE)
->>>>>>> 031d0358aec14cc771d3fce55d2a937bfba01ed8
 
     objects = UserRatingManager()
 
