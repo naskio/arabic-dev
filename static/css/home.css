@@ -1,0 +1,67 @@
+#content {
+    z-index: 0;
+}
+
+#background {
+    z-index: -2;
+}
+
+.background-icon {
+    background: url("../resources/arabic_dev.png");
+    position: absolute;
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    animation: anim 12s ease-in forwards infinite;
+}
+
+.background-icon:nth-child(2n) {
+    border-color: gray;
+}
+
+.background-icon:nth-child(1) {
+    top: 80vh;
+    left: 45vw;
+}
+
+.background-icon:nth-child(2) {
+    animation-delay: 2s;
+    left: 25vw;
+    top: 40vh;
+}
+
+
+.background-icon:nth-child(3) {
+    animation-delay: 4s;
+    left: 75vw;
+    top: 50vh;
+}
+
+.background-icon:nth-child(4) {
+    animation-delay: 6s;
+    left: 90vw;
+    top: 10vh;
+}
+
+
+.background-icon:nth-child(5) {
+    animation-delay: 8s;
+    left: 10vw;
+    top: 85vh;
+}
+
+
+.background-icon:nth-child(6) {
+    animation-delay: 10s;
+    left: 50vw;
+    top: 10vh;
+}
+
+@keyframes anim {
+    from {
+        transform: scale(0) rotate(-90deg) translate(-50%, -50%);
+        opacity: 1;
+    }
+    to {
+        transform: scale(20) rotate(90deg) translate(-50%, -50%);
+        opacity: 0;
+    }
+}

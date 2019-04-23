@@ -13,11 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from django.conf.urls.static import serve
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path  # include
 from apps.stemmers_comparer import views
 from rest_framework import routers
 from django.conf.urls import include, url
+
 
 
 router = routers.DefaultRouter()
@@ -29,8 +31,6 @@ router.register(r'admin/stemmers', views.StemmerViewSet)
 router.register(r'admin/userratings', views.UserRatingViewSet)
 router.register(r'admin/ratings', views.RatingViewSet)
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include(router.urls)),
@@ -40,6 +40,7 @@ urlpatterns = [
     path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers'),
     path('rate', views.rate, name='post_rate'),
     path('get-rates/<stemmer_name>', views.rate, name='get_rates'),
-
+    path('', views.HomeView.as_view(), name='HOME_URL'),
+    path('stemmers/', views.get_stemmers, name='STEMMERS_URL'),
 
 ]

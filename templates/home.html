@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block menu %}
+    {% include 'partials/menu.html' with page='home' %}
+{% endblock %}
+{% block content %}
+    <div id="content"
+         class="position-fixed d-flex flex-column w-100 h-100 justify-content-center align-items-center">
+        <h2 class="text-center mb-4">The arabic language toolbox for developers</h2>
+        <a class="btn btn-outline-dark mt-4" href="{% url 'STEMMERS_URL' %}" role="button">STEMMERS</a>
+    </div>
+
+    <div id="background"
+         class="position-fixed w-100 h-100">
+        <div class="background-icon">
+            ض
+        </div>
+        <div class="background-icon">
+            د
+        </div>
+        <div class="background-icon">
+            ج
+        </div>
+        <div class="background-icon">
+            ه
+        </div>
+        <div class="background-icon">
+            ب
+        </div>
+        <div class="background-icon">
+            س
+        </div>
+    </div>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block javascript %}
+    {#    <script defer="defer" src="{% static 'js/theme.js' %}"></script>#}
+{% endblock %}
