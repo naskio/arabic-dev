@@ -121,7 +121,7 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
-STEMMERS_COMPARER_RATING_MODEL='stemmers_comparer.Rating'
+STEMMERS_COMPARER_RATING_MODEL='stemmers_comparer.Stemmer'
 
 
 STATICFILES_DIRS = [

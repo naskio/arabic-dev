@@ -29,7 +29,6 @@ router.register(r'admin/authors', views.AuthorViewSet)
 router.register(r'admin/languages', views.ProgrammingLanguageViewSet)
 router.register(r'admin/stemmers', views.StemmerViewSet)
 router.register(r'admin/userratings', views.UserRatingViewSet)
-router.register(r'admin/ratings', views.RatingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

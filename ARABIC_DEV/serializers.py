@@ -44,26 +44,20 @@ class StemmerSerializer(serializers.ModelSerializer):
 	requirements = serializers.PrimaryKeyRelatedField(required=True, many=True, read_only=False, queryset=models.Requirement.objects.all())
 	features = serializers.PrimaryKeyRelatedField(required=True, many=True, read_only=False, queryset=models.Feature.objects.all())
 
+
 	class Meta:
 		model = models.Stemmer
-		fields = ('name', 'display_name', 'authors', 'license', 'description', 'documentation_link', 'download_link', 'programming_languages', 'requirements', 'features', 'how_to_use')
+		fields = ('name', 'display_name', 'authors', 'license', 'description', 'documentation_link', 'download_link', 'programming_languages', 'requirements', 'features', 'how_to_use', 'count', 'total', 'average')
 
 
 class UserRatingSerializer(serializers.ModelSerializer):
-	rating__count = serializers.ReadOnlyField(source='rating.count')
-	rating__average = serializers.ReadOnlyField(source='rating.average')
-	rating__total = serializers.ReadOnlyField(source='rating.total')
-	rating__stemmer_id = serializers.ReadOnlyField(source='rating.stemmer__name')
+
+	#stemmer = serializers.ReadOnlyField(source='stemmer.name')
 
 
 	class Meta:
 		model = models.UserRating
-		fields = ('user_email_address', 'comment', 'score', 'rating__count', 'rating__average', 'rating__total', 'rating', 'rating__stemmer_id', 'created', 'modified')
+		fields = ('user_email_address', 'comment', 'score', 'stemmer', 'created', 'modified')
 
 
-class RatingSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = models.Rating
-		fields = ('id', 'count', 'average', 'total', 'stemmer')
 

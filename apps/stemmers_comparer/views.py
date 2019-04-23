@@ -211,20 +211,16 @@ class ProgrammingLanguageViewSet(viewsets.ModelViewSet):
     queryset = models.ProgrammingLanguage.objects.all()
     serializer_class = serializers.ProgrammingLanguageSerializer
 
+
 class UserRatingViewSet(viewsets.ModelViewSet):
 
     queryset = models.UserRating.objects.all()
     serializer_class = serializers.UserRatingSerializer
 
+
 class StemmerViewSet(viewsets.ModelViewSet):
     queryset = models.Stemmer.objects.all()
     serializer_class = serializers.StemmerSerializer
-
-
-class RatingViewSet(viewsets.ModelViewSet):
-
-    queryset = models.Rating.objects.all()
-    serializer_class = serializers.RatingSerializer
 
 
 def alkhalil_morpho_sys_stemmer(string):
@@ -344,22 +340,20 @@ def rate(request, stemmer_name=None):
 
         stemmer = models.Stemmer.objects.get(name=string_dict['stemmer_name'])
 
-        rating = models.Rating.objects.rate(
+        rating = models.Stemmer.objects.rate(
                             instance=stemmer,
                             score=int(string_dict['score']),
                             user_email_address=string_dict['user_email_address'],
                             user_github_account_link=string_dict['user_github_account_link'],
                             comment=string_dict['comment'])
 
-        rating.calculate()
-        rating_dict = rating.to_dict()
+        stemmer.calculate()
+        rating_dict = stemmer.to_dict()
         return Response({"rating": rating_dict})
 
     else:#request.method == 'GET'
 
-        ratings = models.Rating.objects.filter(stemmer__name=stemmer_name)
-        for rating in ratings:
-            users_ratings = models.UserRating.objects.filter(rating=rating.pk)
+        users_ratings = models.UserRating.objects.filter(rating=stemmer_name)
         users_ratings_dict = []
 
         for user_ratings in users_ratings:
