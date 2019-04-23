@@ -13,12 +13,12 @@ those names are used to choose which stemmer to execute
     10 --> shereenekhoja --> shereen_kohja_stemmer
     11 --> tashaphyne --> tashaphyne_stemmer
 """
-from django.views.generic import DetailView
+from django.views.generic import View
+import json
 from django.shortcuts import render
 from apps.stemmers_comparer import models
-from rest_framework import  viewsets
-from ARABIC_DEV import  serializers
-from rest_framework.generics import ListAPIView
+from rest_framework import viewsets
+from ARABIC_DEV import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from libs.stemmers.services.alkhalil_morph_sys_stemmer import alkhalilMorphoSysStemmer
@@ -33,7 +33,7 @@ from libs.stemmers.services.qutuf_stemmer import qutufStemmer
 from libs.stemmers.services.shereen_khoja_stemmer.shereenKhojaStemmer import ShereenKhojaStemmer as shereen_khoja_stemmer_
 from libs.stemmers.services.tashaphyne_stemmer import tashaphyneStemmer
 from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
-
+from . import get_star_ratings_rating_model
 from django.http import HttpResponse
 # Create your views here.
 
@@ -308,6 +308,28 @@ def stem_view(request, stemmer_name):
     stem_words = switch(stemmer_name)(string_dict["string"])
     return Response({"stem_words": stem_words})
     #return render(request, 'template.html', {'stem_words': stem_words})
+
+
+@api_view(['GET', 'POST'])
+def rate(request):
+
+    if request.method == 'POST':
+        string_dict = request.data.dict()
+        stemmer = models.Stemmer.objects.get(name=string_dict['stemmer_name'])
+        rating = get_star_ratings_rating_model().objects.rate(
+
+                            instance=stemmer,
+                            score=string_dict['score'],
+                            user_email_address=string_dict['user_email_address'],
+                            user_github_account_link=string_dict['user_github_account_link'],
+                            comment=string_dict['comment'])
+        rating.calculate()
+        rating_dict = rating.to_dict()
+        return Response({"rating": rating_dict})
+
+
+
+
 
 
 

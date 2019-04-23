@@ -39,5 +39,6 @@ urlpatterns = [
     path('get-stemmer/<stemmer_name>', views.get_stemmer, name='get_stemmer'),
     path('get-stemmers', views.get_stemmers, name='get_stemmers'),
     path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers'),
+    path('rate/', views.rate, name='post_rate'),
 
 ]
