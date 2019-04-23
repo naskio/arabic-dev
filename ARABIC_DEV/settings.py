@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'apps.stemmers_comparer'
+    'apps.stemmers_comparer',
+
 ]
 
 MIDDLEWARE = [
@@ -125,7 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
+STEMMERS_COMPARER_RATING_MODEL='stemmers_comparer.Rating'
 #STAR_RATINGS_RATING_MODEL = 'stemmers_comparer.Review'
 

@@ -17,9 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from apps.stemmers_comparer import views
 from rest_framework import routers
-from rest_framework.documentation import include_docs_urls
 from django.conf.urls import include, url
-
 
 
 router = routers.DefaultRouter()
@@ -28,17 +26,20 @@ router.register(r'admin/feautures', views.FeatureViewSet)
 router.register(r'admin/authors', views.AuthorViewSet)
 router.register(r'admin/languages', views.ProgrammingLanguageViewSet)
 router.register(r'admin/stemmers', views.StemmerViewSet)
+router.register(r'admin/userratings', views.UserRatingViewSet)
+router.register(r'admin/ratings', views.RatingViewSet)
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include(router.urls)),
-    path(r'api/docs', include_docs_urls(title='Sayara DZ API')),
     path('stem-words/<stemmer_name>', views.stem_view, name='stem_words'),
     path('get-stemmer/<stemmer_name>', views.get_stemmer, name='get_stemmer'),
     path('get-stemmers', views.get_stemmers, name='get_stemmers'),
     path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers'),
-    path('rate/', views.rate, name='post_rate'),
+    path('rate', views.rate, name='post_rate'),
+    path('get-rates/<stemmer_name>', views.rate, name='get_rates'),
+
 
 ]

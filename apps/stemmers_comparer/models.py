@@ -2,8 +2,6 @@ from django.db import models
 from decimal import Decimal
 from django.db.models import Avg, Count, Sum
 from model_utils.models import TimeStampedModel
-import swapper
-from . import get_star_ratings_rating_model_name, get_star_ratings_rating_model
 
 # Author Model
 class Author(models.Model):
@@ -65,14 +63,20 @@ class Stemmer(models.Model):
 
 class RatingManager(models.Manager):
     # instance = stemmer
+
+    def for_instance(self, instance):
+
+        ratings, created = self.get_or_create(stemmer=instance)
+
+        return ratings
+
     def rate(self, instance, score, user_email_address, user_github_account_link=None, comment=''):
 
-        existing_rating = UserRating.objects.for_instance_by_user(instance, user_email_address)
+        existing_rating = UserRating.objects.for_instance_by_user(instance=instance, user_email_address=user_email_address)
 
         if existing_rating:
-
-            existing_rating.score = score
             for existing_rating_ in existing_rating:
+                existing_rating_.score = score
                 existing_rating_.save()
             return existing_rating_.rating
 
@@ -84,8 +88,8 @@ class RatingManager(models.Manager):
 
 # Rate Model
 class Rate(models.Model):
-    count = models.PositiveIntegerField(default=0)
-    total = models.PositiveIntegerField(default=0)
+    count = models.IntegerField(default=0)
+    total = models.IntegerField(default=0)
     average = models.DecimalField(max_digits=6, decimal_places=3, default=Decimal(0.0))
     stemmer = models.OneToOneField('stemmer', on_delete=models.CASCADE, unique=True)
 
@@ -103,13 +107,11 @@ class Rate(models.Model):
             'count': self.count,
             'total': self.total,
             'average': self.average,
-            'percentage': self.percentage,
-            'stemmer': self.stemmer.name,
-            'stemmer__display_name': self.stemmer.display_name
+            'percentage': self.percentage
         }
 
     def __str__(self):
-        return str(self.count)
+        return str(self.id)
 
     def calculate(self):
         """
@@ -124,27 +126,17 @@ class Rate(models.Model):
 
 class Rating(Rate):
 
-    class Meta(Rate.Meta):
+    def __str__(self):
+        return str(self.id)
 
-        swappable = swapper.swappable_setting('stemmers_comparer', 'Rating')
 
 
 class UserRatingManager(models.Manager):
 
     def for_instance_by_user(self, instance, user_email_address):
 
-        user = self.filter(user_email_address__iexact=user_email_address, rating__stemmer=instance)
-        return user
-
-    def bulk_create(self, objs, batch_size=None):
-
-        objs = super(UserRatingManager, self).bulk_create(objs, batch_size=batch_size)
-        for rating in set(o.rating for o in objs):
-
-            rating.calculate()
-
-        return objs
-
+        rating = self.filter(user_email_address=user_email_address, rating__stemmer=instance)
+        return rating
 
 # UserRating Model
 class UserRating(TimeStampedModel):
@@ -152,12 +144,11 @@ class UserRating(TimeStampedModel):
     """
     An individual rating of a user against a model.
     """
-    user_email_address = models.EmailField(unique=True)
+    user_email_address = models.EmailField()
     user_github_account_link = models.CharField(max_length=255, null=True)
     comment = models.TextField()
-    comment_date = models.DateTimeField(auto_now=True)
-    score = models.PositiveSmallIntegerField()
-    rating = models.ForeignKey(get_star_ratings_rating_model_name(), related_name='user_ratings', on_delete=models.CASCADE)
+    score = models.CharField(max_length=5)
+    rating = models.ForeignKey('rating', related_name='user_ratings', on_delete=models.CASCADE)
 
     objects = UserRatingManager()
 

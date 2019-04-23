@@ -33,7 +33,6 @@ from libs.stemmers.services.qutuf_stemmer import qutufStemmer
 from libs.stemmers.services.shereen_khoja_stemmer.shereenKhojaStemmer import ShereenKhojaStemmer as shereen_khoja_stemmer_
 from libs.stemmers.services.tashaphyne_stemmer import tashaphyneStemmer
 from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
-from . import get_star_ratings_rating_model
 from django.http import HttpResponse
 # Create your views here.
 
@@ -89,6 +88,9 @@ def get_stemmers(request, programming_language=''):
                 website=programming_language.website
             )
             programming_languages_dict.append(programming_language_dict)
+
+        rating = models.Rating.objects.filter(stemmer__name=stemmer.name).first()
+
         stemmer_dict = dict(
             name=stemmer.name,
             display_name=stemmer.display_name,
@@ -101,12 +103,13 @@ def get_stemmers(request, programming_language=''):
             authors=authors_dict,
             programming_languages=programming_languages_dict,
             requirements=requirements_dict,
-            features=features_dict
+            features=features_dict,
+            rating=rating.to_dict()
         )
         stemmers_dict.append(stemmer_dict)
     #print(stemmers_dict)
-    #return Response({"stem_words": stemmers_dict})
-    return render(request, 'stemmers.html', {'stemmers': stemmers_dict})
+    return Response({"stem_words": stemmers_dict})
+    #return render(request, 'stemmers.html', {'stemmers': stemmers_dict})
 
 
 @api_view(['GET'])
@@ -152,6 +155,9 @@ def get_stemmer(request, stemmer_name):
             website=programming_language.website
         )
         programming_languages_dict.append(programming_language_dict)
+
+    rating = models.Rating.objects.filter(stemmer__name=stemmer_name).first()
+
     stemmer_dict = dict(
         name=stemmer.name,
         display_name=stemmer.display_name,
@@ -164,7 +170,8 @@ def get_stemmer(request, stemmer_name):
         authors=authors_dict,
         programming_languages=programming_languages_dict,
         requirements=requirements_dict,
-        features=features_dict
+        features=features_dict,
+        rating=rating.to_dict()
     )
 
     #print(stemmers_dict)
@@ -194,11 +201,21 @@ class ProgrammingLanguageViewSet(viewsets.ModelViewSet):
     queryset = models.ProgrammingLanguage.objects.all()
     serializer_class = serializers.ProgrammingLanguageSerializer
 
+class UserRatingViewSet(viewsets.ModelViewSet):
+
+    queryset = models.UserRating.objects.all()
+    serializer_class = serializers.UserRatingSerializer
 
 class StemmerViewSet(viewsets.ModelViewSet):
 
     queryset = models.Stemmer.objects.all()
     serializer_class = serializers.StemmerSerializer
+
+
+class RatingViewSet(viewsets.ModelViewSet):
+
+    queryset = models.Rating.objects.all()
+    serializer_class = serializers.RatingSerializer
 
 
 def alkhalil_morpho_sys_stemmer(string):
@@ -311,21 +328,45 @@ def stem_view(request, stemmer_name):
 
 
 @api_view(['GET', 'POST'])
-def rate(request):
-
+def rate(request, stemmer_name=None):
     if request.method == 'POST':
         string_dict = request.data.dict()
-        stemmer = models.Stemmer.objects.get(name=string_dict['stemmer_name'])
-        rating = get_star_ratings_rating_model().objects.rate(
 
+        stemmer = models.Stemmer.objects.get(name=string_dict['stemmer_name'])
+
+        rating = models.Rating.objects.rate(
                             instance=stemmer,
-                            score=string_dict['score'],
+                            score=int(string_dict['score']),
                             user_email_address=string_dict['user_email_address'],
                             user_github_account_link=string_dict['user_github_account_link'],
                             comment=string_dict['comment'])
+
         rating.calculate()
         rating_dict = rating.to_dict()
         return Response({"rating": rating_dict})
+    else:#request.method == 'GET'
+
+        ratings = models.Rating.objects.filter(stemmer__name=stemmer_name)
+        for rating in ratings:
+            users_ratings = models.UserRating.objects.filter(rating=rating.pk)
+        users_ratings_dict = []
+
+        for user_ratings in users_ratings:
+            user_ratings_dict = dict(
+                user_email_address=user_ratings.user_email_address,
+                user_github_account_link=user_ratings.user_github_account_link,
+                comment=user_ratings.comment,
+                score=int(user_ratings.score),
+                created=user_ratings.created,
+                modified=user_ratings.modified
+            )
+            users_ratings_dict.append(user_ratings_dict)
+
+        return Response({"users_ratings": users_ratings_dict})
+
+
+
+
 
 
 
