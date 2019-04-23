@@ -13,7 +13,7 @@ those names are used to choose which stemmer to execute
     10 --> shereenekhoja --> shereen_kohja_stemmer
     11 --> tashaphyne --> tashaphyne_stemmer
 """
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 import json
 from django.shortcuts import render
 from apps.stemmers_comparer import models
@@ -23,24 +23,35 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from libs.stemmers.services.alkhalil_morph_sys_stemmer import alkhalilMorphoSysStemmer
 from libs.stemmers.services.arabic_processing_cog_stemmer import arabicProcessingCogStemmer
-from libs.stemmers.services.arabic_stemming_toolkit.ast_algo1.arabicStemmingToolkitAlgo1  import ArabicStemmingToolkitStemmerAlgo1 as ast_algo1_stemmer
-from libs.stemmers.services.arabic_stemming_toolkit.ast_algo2.arabicStemmingToolkitAlgo2 import ArabicStemmingToolkitStemmerAlgo2 as ast_algo2_stemmer
-from libs.stemmers.services.arabic_stemming_toolkit.ast_algo3.arabicStemmingToolkitAlgo3 import ArabicStemmingToolkitStemmerAlgo3 as ast_algo3_stemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo1.arabicStemmingToolkitAlgo1 import \
+    ArabicStemmingToolkitStemmerAlgo1 as ast_algo1_stemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo2.arabicStemmingToolkitAlgo2 import \
+    ArabicStemmingToolkitStemmerAlgo2 as ast_algo2_stemmer
+from libs.stemmers.services.arabic_stemming_toolkit.ast_algo3.arabicStemmingToolkitAlgo3 import \
+    ArabicStemmingToolkitStemmerAlgo3 as ast_algo3_stemmer
 from libs.stemmers.services.farasa_stemmer.farasaStemmer import FarasaStemmer as farasa_stemmer_
 from libs.stemmers.services.assems_arabic_light_stemmer import assemsArabicLightStemmer
 from libs.stemmers.services.ntlk_stemmer import ntlkIsriStemmer
 from libs.stemmers.services.qutuf_stemmer import qutufStemmer
-from libs.stemmers.services.shereen_khoja_stemmer.shereenKhojaStemmer import ShereenKhojaStemmer as shereen_khoja_stemmer_
+from libs.stemmers.services.shereen_khoja_stemmer.shereenKhojaStemmer import \
+    ShereenKhojaStemmer as shereen_khoja_stemmer_
 from libs.stemmers.services.tashaphyne_stemmer import tashaphyneStemmer
-from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
+from libs.stemmers.services.lucene_arabic_analyzer.luceneArabicAnalyzerStemmer import \
+    LuceneArabicAnalyzerStemmer as lucene_arabic_analyzer_stemmer_
 from . import get_star_ratings_rating_model
 from django.http import HttpResponse
+
+
 # Create your views here.
+
+
+class HomeView(TemplateView):
+    template_name = "home.html"
+
 
 @api_view(['GET'])
 def get_stemmers(request, programming_language=''):
-
-    if programming_language=='':
+    if programming_language == '':
         stemmers = models.Stemmer.objects.all()
 
     else:
@@ -48,7 +59,7 @@ def get_stemmers(request, programming_language=''):
         # substring search
         # stemmers = models.Stemmer.objects.filter(programming_languages__name__icontains=programming_language)
 
-    stemmers_dict =[]
+    stemmers_dict = []
     for stemmer in stemmers:
 
         requirements = stemmer.requirements.all()
@@ -56,7 +67,7 @@ def get_stemmers(request, programming_language=''):
         for requirement in requirements:
             requirement_dict = dict(
                 id=requirement.id,
-                content=requirement.content
+                name=requirement.name
             )
             requirements_dict.append(requirement_dict)
 
@@ -65,7 +76,7 @@ def get_stemmers(request, programming_language=''):
         for feature in features:
             feature_dict = dict(
                 id=feature.id,
-                content=feature.content
+                name=feature.name
             )
             features_dict.append(feature_dict)
 
@@ -104,14 +115,13 @@ def get_stemmers(request, programming_language=''):
             features=features_dict
         )
         stemmers_dict.append(stemmer_dict)
-    #print(stemmers_dict)
-    #return Response({"stem_words": stemmers_dict})
+    # print(stemmers_dict)
+    # return Response({"stem_words": stemmers_dict})
     return render(request, 'stemmers.html', {'stemmers': stemmers_dict})
 
 
 @api_view(['GET'])
 def get_stemmer(request, stemmer_name):
-
     stemmer = models.Stemmer.objects.get(name=stemmer_name)
 
     requirements = stemmer.requirements.all()
@@ -119,7 +129,7 @@ def get_stemmer(request, stemmer_name):
     for requirement in requirements:
         requirement_dict = dict(
             id=requirement.id,
-            content=requirement.content
+            name=requirement.name
         )
         requirements_dict.append(requirement_dict)
 
@@ -128,7 +138,7 @@ def get_stemmer(request, stemmer_name):
     for feature in features:
         feature_dict = dict(
             id=feature.id,
-            content=feature.content
+            name=feature.name
         )
         features_dict.append(feature_dict)
 
@@ -167,36 +177,32 @@ def get_stemmer(request, stemmer_name):
         features=features_dict
     )
 
-    #print(stemmers_dict)
-    #return Response({"stemmer_dict": stemmer_dict})
+    # print(stemmers_dict)
+    # return Response({"stemmer_dict": stemmer_dict})
     return render(request, 'stemmer.html', {'stemmer': stemmer_dict})
 
-class RequirementViewSet(viewsets.ModelViewSet):
 
+class RequirementViewSet(viewsets.ModelViewSet):
     queryset = models.Requirement.objects.all()
     serializer_class = serializers.RequirementSerializer
 
 
 class FeatureViewSet(viewsets.ModelViewSet):
-
     queryset = models.Feature.objects.all()
     serializer_class = serializers.FeaturesSerializer
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
-
     queryset = models.Author.objects.all()
     serializer_class = serializers.AuthorSerializer
 
 
 class ProgrammingLanguageViewSet(viewsets.ModelViewSet):
-
     queryset = models.ProgrammingLanguage.objects.all()
     serializer_class = serializers.ProgrammingLanguageSerializer
 
 
 class StemmerViewSet(viewsets.ModelViewSet):
-
     queryset = models.Stemmer.objects.all()
     serializer_class = serializers.StemmerSerializer
 
@@ -250,7 +256,6 @@ def tashaphyne_stemmer(string):
 
 
 def all_stemmers(string):
-
     alkhalilMorphoSys_dict = alkhalil_morpho_sys_stemmer(string)
     arabicProcessingCog_dict = arabic_processing_cog_stemmer(string)
     AST1_dict = ast1(string)
@@ -284,10 +289,11 @@ def all_stemmers(string):
 def pass_string(string):
     return string
 
+
 def switch(case):
     return {
-        "alkhalilMorphoSys":alkhalil_morpho_sys_stemmer,
-        "arabicProcessingCog":arabic_processing_cog_stemmer,
+        "alkhalilMorphoSys": alkhalil_morpho_sys_stemmer,
+        "arabicProcessingCog": arabic_processing_cog_stemmer,
         "AST1": ast1,
         "AST2": ast2,
         "AST3": ast3,
@@ -307,31 +313,24 @@ def stem_view(request, stemmer_name):
     string_dict = request.data.dict()
     stem_words = switch(stemmer_name)(string_dict["string"])
     return Response({"stem_words": stem_words})
-    #return render(request, 'template.html', {'stem_words': stem_words})
+    # return render(request, 'template.html', {'stem_words': stem_words})
 
 
 @api_view(['GET', 'POST'])
 def rate(request):
-
     if request.method == 'POST':
         string_dict = request.data.dict()
         stemmer = models.Stemmer.objects.get(name=string_dict['stemmer_name'])
         rating = get_star_ratings_rating_model().objects.rate(
 
-                            instance=stemmer,
-                            score=string_dict['score'],
-                            user_email_address=string_dict['user_email_address'],
-                            user_github_account_link=string_dict['user_github_account_link'],
-                            comment=string_dict['comment'])
+            instance=stemmer,
+            score=string_dict['score'],
+            user_email_address=string_dict['user_email_address'],
+            user_github_account_link=string_dict['user_github_account_link'],
+            comment=string_dict['comment'])
         rating.calculate()
         rating_dict = rating.to_dict()
         return Response({"rating": rating_dict})
-
-
-
-
-
-
 
 # TODO: add view for home.html page
 # TODO: add view for stemmer.html page
