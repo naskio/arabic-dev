@@ -14,7 +14,7 @@ class Author(models.Model):
     website = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return self.first_name
+        return f"{self.first_name} {self.last_name}"
 
 
 # ProgrammingLanguage Model
@@ -28,19 +28,19 @@ class ProgrammingLanguage(models.Model):
 
 # Requirement Model
 class Requirement(models.Model):
-    content = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
     url = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return self.content
+        return self.name
 
 
 # Feature Model
 class Feature(models.Model):
-    content = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
 
     def __str__(self):
-        return self.content
+        return self.name
 
 
 # Stemmer Model
@@ -48,14 +48,14 @@ class Stemmer(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     display_name = models.CharField(max_length=80)
     is_enabled = models.BooleanField(default=True)
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, blank=True)
     license = models.CharField(max_length=80, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     documentation_link = models.URLField(null=True, blank=True)
     download_link = models.URLField(null=True, blank=True)
-    programming_languages = models.ManyToManyField(ProgrammingLanguage)
-    requirements = models.ManyToManyField(Requirement)
-    features = models.ManyToManyField(Feature)
+    programming_languages = models.ManyToManyField(ProgrammingLanguage, blank=True)
+    requirements = models.ManyToManyField(Requirement, blank=True)
+    features = models.ManyToManyField(Feature, blank=True)
     how_to_use = models.TextField(null=True, blank=True)
 
     def __str__(self):
