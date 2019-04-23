@@ -1,0 +1,1113 @@
+[
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 1,
+    "fields": {
+      "first_name": "Mohamed",
+      "last_name": "Boudchiche",
+      "github_account_link": null,
+      "website": "https://www.researchgate.net/profile/Mohamed_Boudchiche2"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 2,
+    "fields": {
+      "first_name": "Azzeddine",
+      "last_name": "Mazroui",
+      "github_account_link": null,
+      "website": "https://www.researchgate.net/profile/Azzeddine_Mazroui3"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 3,
+    "fields": {
+      "first_name": "Mohamad",
+      "last_name": "Ould Abdallahi Ould Bebah",
+      "github_account_link": null,
+      "website": "https://www.researchgate.net/profile/Mohamad_Bebah"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 4,
+    "fields": {
+      "first_name": "Abdelhak",
+      "last_name": "Lakhouaja",
+      "github_account_link": null,
+      "website": "https://www.researchgate.net/profile/Abdelhak_Lakhouaja"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 5,
+    "fields": {
+      "first_name": "Assem",
+      "last_name": "Chelli",
+      "github_account_link": "https://github.com/assem-ch/",
+      "website": "https://www.assemchelli.com/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 6,
+    "fields": {
+      "first_name": "Mohamed",
+      "last_name": "Eldesouki",
+      "github_account_link": "https://github.com/disooqi",
+      "website": "https://mohamed-eldesouki.com/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 7,
+    "fields": {
+      "first_name": "Kareem",
+      "last_name": "Darwish",
+      "github_account_link": null,
+      "website": "https://scinapse.io/authors/2064042002"
+    }
+  },
+  {
+    "model": "stemmers_comparer.author",
+    "pk": 8,
+    "fields": {
+      "first_name": "Hamdy",
+      "last_name": "Mubarak",
+      "github_account_link": null,
+      "website": "https://scinapse.io/authors/2251487896"
+    }
+  },
+  {
+    "model": "stemmers_comparer.programminglanguage",
+    "pk": "C",
+    "fields": {
+      "website": "https://www.cprogramming.com/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.programminglanguage",
+    "pk": "C++",
+    "fields": {
+      "website": "http://www.cplusplus.com/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.programminglanguage",
+    "pk": "Java",
+    "fields": {
+      "website": "https://www.java.com/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.programminglanguage",
+    "pk": "JavaScript",
+    "fields": {
+      "website": "https://www.javascript.com/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.programminglanguage",
+    "pk": "Python",
+    "fields": {
+      "website": "https://www.python.org/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.requirement",
+    "pk": 1,
+    "fields": {
+      "name": "requests package",
+      "url": "https://pypi.org/project/requests/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.requirement",
+    "pk": 2,
+    "fields": {
+      "name": "beautifulsoup4 package",
+      "url": "https://pypi.org/project/beautifulsoup4/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.requirement",
+    "pk": 3,
+    "fields": {
+      "name": "Java Runtime Envionment (JRE)",
+      "url": "https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html"
+    }
+  },
+  {
+    "model": "stemmers_comparer.requirement",
+    "pk": 4,
+    "fields": {
+      "name": "snowball Stemmer",
+      "url": "https://www.arabicstemmer.com/python/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.requirement",
+    "pk": 5,
+    "fields": {
+      "name": "nltk package",
+      "url": "https://pypi.org/project/nltk/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.requirement",
+    "pk": 6,
+    "fields": {
+      "name": "Tashaphyne package",
+      "url": "https://pypi.org/project/Tashaphyne/"
+    }
+  },
+  {
+    "model": "stemmers_comparer.stemmer",
+    "pk": "alkhalil_morph_sys",
+    "fields": {
+      "display_name": "Al Khalil Morpho Sys Stemmer",
+      "is_enabled": true,
+      "license": "CC-BY-NC-SA",
+      "description": "Alkhalil Morpho Sys is a morphosyntactic parser of Arabic words. The system can process non vocalized texts as well as partially or totally vocalized ones. Our approach is based on modelling a very large set of Arabic morphological rules, and also on integrating linguistic resources, such as the root database, vocalized patterns associated with roots, and proclitic and enclitic tables. As an output of the analysis, we have a highly informative table mainly containing vocalization of the stem, its grammatical category, its possible roots associated with corresponding patterns, proclitics and enclitics.",
+      "documentation_link": "http://oujda-nlp-team.net/en/programms/alkhalil-morphology-2-en/?lang=en",
+      "download_link": "http://resources.oujda-nlp-team.net:9090/home#data1",
+      "how_to_use": "# -*- coding: utf-8 -*-\r\nimport alkhalilMorphoSysStemmer\r\n\r\n# unicode input\r\nstring = '\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n# return an array\r\nstems_list = alkhalilMorphoSysStemmer.stem(string)",
+      "authors": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "programming_languages": [
+        "Java"
+      ],
+      "requirements": [
+        3
+      ],
+      "features": []
+    }
+  },
+  {
+    "model": "stemmers_comparer.stemmer",
+    "pk": "arabic_light_stemmer",
+    "fields": {
+      "display_name": "Assem's Arabic Light Stemmer",
+      "is_enabled": true,
+      "license": "BSD License",
+      "description": "Welcome to the Arabic Light Stemming Algorithm made for Snowball, it's fast and can be generated in many programming languages (through Snowball).",
+      "documentation_link": "https://arabicstemmer.com/",
+      "download_link": "https://arabicstemmer.com/",
+      "how_to_use": "from snowballstemmer import stemmer\r\n\r\nar_stemmer = stemmer(\"arabic\")\r\nar_stemmer.stemWord(u\"\u0641\u0633\u0645\u064a\u062a\u0645\u0648\u0647\u0627\")",
+      "authors": [
+        5
+      ],
+      "programming_languages": [
+        "C",
+        "C++",
+        "Java",
+        "JavaScript",
+        "Python"
+      ],
+      "requirements": [
+        4
+      ],
+      "features": []
+    }
+  },
+  {
+    "model": "stemmers_comparer.stemmer",
+    "pk": "arabic_processing_cog",
+    "fields": {
+      "display_name": "Arabic Processing Cog",
+      "is_enabled": true,
+      "license": "MIT License",
+      "description": "A Python package that do stemming, tokenization, sentence breaking, segmentation, normalization, POS tagging for Arabic language.",
+      "documentation_link": "https://github.com/disooqi/ArabicProcessingCog",
+      "download_link": "https://github.com/disooqi/ArabicProcessingCog",
+      "how_to_use": "from arabic_processing_cog.tokenization import ArabicTokenizer as arabic_tokenizer\r\nfrom arabic_processing_cog.stemming import Light10stemmer as arabic_processing_cog_stemmer\r\n\r\nstring = '\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n  for token in arabic_tokenizer.tokenize(string):\r\n    stem_word = arabic_processing_cog_stemmer.stem_token(token)\r\n    print(stem_word)",
+      "authors": [
+        6
+      ],
+      "programming_languages": [
+        "Python"
+      ],
+      "requirements": [],
+      "features": []
+    }
+  },
+  {
+    "model": "stemmers_comparer.stemmer",
+    "pk": "farasa",
+    "fields": {
+      "display_name": "Farasa",
+      "is_enabled": true,
+      "license": null,
+      "description": "Farasa (which means \u201cinsight\u201d in Arabic), is a fast and accurate text processing toolkit for Arabic text. Farasa consists of the segmentation/tokenization module, POS tagger, Arabic text Diacritizer, and Dependency Parser. Farasa segmentation/tokenization module is based on SVM-rank using linear kernels that uses a variety of features and lexicons to rank possible segmentations of a word. The features include: likelihoods of stems, prefixes, suffixes, their combinations; presence in lexicons containing valid stems or named entities; and underlying stem templates.",
+      "documentation_link": "http://qatsdemo.cloudapp.net/farasa/",
+      "download_link": "http://qatsdemo.cloudapp.net/farasa/",
+      "how_to_use": "# -*- coding: utf-8 -*-\r\n\r\nfrom farasaStemmer import FarasaStemmer as farasa_stemmer\r\n\r\n# unicode input\r\nstring = u'\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n# return an array\r\nstems_list = farasa_stemmer.stem(farasa_stemmer, string)",
+      "authors": [
+        7,
+        8
+      ],
+      "programming_languages": [
+        "Java"
+      ],
+      "requirements": [
+        3
+      ],
+      "features": []
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add author",
+      "content_type": 7,
+      "codename": "add_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change author",
+      "content_type": 7,
+      "codename": "change_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete author",
+      "content_type": 7,
+      "codename": "delete_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view author",
+      "content_type": 7,
+      "codename": "view_author"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add feature",
+      "content_type": 8,
+      "codename": "add_feature"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change feature",
+      "content_type": 8,
+      "codename": "change_feature"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete feature",
+      "content_type": 8,
+      "codename": "delete_feature"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view feature",
+      "content_type": 8,
+      "codename": "view_feature"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add programming language",
+      "content_type": 9,
+      "codename": "add_programminglanguage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change programming language",
+      "content_type": 9,
+      "codename": "change_programminglanguage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete programming language",
+      "content_type": 9,
+      "codename": "delete_programminglanguage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view programming language",
+      "content_type": 9,
+      "codename": "view_programminglanguage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add requirement",
+      "content_type": 10,
+      "codename": "add_requirement"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change requirement",
+      "content_type": 10,
+      "codename": "change_requirement"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete requirement",
+      "content_type": 10,
+      "codename": "delete_requirement"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view requirement",
+      "content_type": 10,
+      "codename": "view_requirement"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add stemmer",
+      "content_type": 11,
+      "codename": "add_stemmer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change stemmer",
+      "content_type": 11,
+      "codename": "change_stemmer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete stemmer",
+      "content_type": 11,
+      "codename": "delete_stemmer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view stemmer",
+      "content_type": 11,
+      "codename": "view_stemmer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add user rating",
+      "content_type": 12,
+      "codename": "add_userrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change user rating",
+      "content_type": 12,
+      "codename": "change_userrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete user rating",
+      "content_type": 12,
+      "codename": "delete_userrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view user rating",
+      "content_type": 12,
+      "codename": "view_userrating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add rating",
+      "content_type": 13,
+      "codename": "add_rating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change rating",
+      "content_type": 13,
+      "codename": "change_rating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete rating",
+      "content_type": 13,
+      "codename": "delete_rating"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view rating",
+      "content_type": 13,
+      "codename": "view_rating"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$150000$cThYXk64O34z$l7OTDLRmD8bvhnZqPKiyiCSZvLLcZVlQZ/fW/WANyA4=",
+      "last_login": "2019-04-23T16:04:24.103Z",
+      "is_superuser": true,
+      "username": "mehdi",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2019-04-23T16:04:10.194Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2019-04-23T16:21:28.554Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "Mohamed",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2019-04-23T16:22:36.532Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "Azzeddine Mazroui",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2019-04-23T16:23:04.485Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "Mohamad Ould Abdallahi Ould Bebah",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2019-04-23T16:23:27.393Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "4",
+      "object_repr": "Abdelhak Lakhouaja",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2019-04-23T16:27:03.331Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "alkhalil_morph_sys",
+      "object_repr": "Al Khalil Morpho Sys Stemmer",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"authors\", \"how_to_use\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2019-04-23T16:28:21.427Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "Python",
+      "object_repr": "Python",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2019-04-23T16:28:42.860Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "JavaScript",
+      "object_repr": "JavaScript",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2019-04-23T16:29:16.264Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "Java",
+      "object_repr": "Java",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2019-04-23T16:29:57.544Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "C",
+      "object_repr": "C",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2019-04-23T16:30:17.846Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "C++",
+      "object_repr": "C++",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2019-04-23T16:34:48.898Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "requests package",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2019-04-23T16:35:00.355Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "beautifulsoup4 package",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2019-04-23T16:35:26.185Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "3",
+      "object_repr": "Java Runtime Envionment (JRE)",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2019-04-23T16:35:59.268Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "4",
+      "object_repr": "snowball Stemmer",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2019-04-23T16:36:23.964Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "5",
+      "object_repr": "nltk package",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2019-04-23T16:36:36.816Z",
+      "user": 1,
+      "content_type": 10,
+      "object_id": "6",
+      "object_repr": "Tashaphyne package",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2019-04-23T16:37:57.455Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "alkhalil_morph_sys",
+      "object_repr": "Al Khalil Morpho Sys Stemmer",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"license\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2019-04-23T16:39:02.379Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "alkhalil_morph_sys",
+      "object_repr": "Al Khalil Morpho Sys Stemmer",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"documentation_link\", \"download_link\", \"programming_languages\", \"requirements\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2019-04-23T16:40:29.097Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "5",
+      "object_repr": "Assem Chelli",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2019-04-23T16:44:02.620Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "assemsArabic",
+      "object_repr": "Assem's Arabic Light Stemmer",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2019-04-23T16:45:30.722Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "6",
+      "object_repr": "Mohamed Eldesouki",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2019-04-23T16:48:13.116Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "arabic_processing_cog",
+      "object_repr": "Arabic Processing Cog",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2019-04-23T16:48:51.227Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "arabic_light_stemmer",
+      "object_repr": "Assem's Arabic Light Stemmer",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2019-04-23T16:49:09.919Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "assemsArabic",
+      "object_repr": "Assem's Arabic Light Stemmer",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2019-04-23T16:50:58.953Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "farasa",
+      "object_repr": "Farasa",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2019-04-23T16:51:43.846Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "7",
+      "object_repr": "Kareem Darwish",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2019-04-23T16:51:57.327Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "8",
+      "object_repr": "Hamdy Mubarak",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2019-04-23T16:52:11.263Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "farasa",
+      "object_repr": "Farasa",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"authors\"]}}]"
+    }
+  }
+]
