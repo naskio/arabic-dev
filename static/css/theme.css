@@ -20,6 +20,10 @@ html, body {
     padding-right: 8px;
 }
 
+/*#menu{*/
+    /*position: fixed;*/
+/*}*/
+
 #page-container {
     position: relative;
     min-height: 100vh;
