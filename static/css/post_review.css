@@ -1,0 +1,27 @@
+/*Alternative: use font awesome star*/
+/*@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*/
+
+#rating-input > input {
+    display: none;
+}
+
+#rating-input > label:before {
+    /*content: "\f005"; !* Star *!*/
+    /*font-family: FontAwesome, sans-serif;*/
+    content: "\2605"; /* Star */
+    margin: 0.2rem;
+    font-size: 3em;
+    display: inline-block;
+}
+
+#rating-input > label {
+    color: #E3E3E3;
+}
+
+#rating-input > input:checked ~ label {
+    color: #FFBF34;
+}
+
+#rating-input > input:hover ~ label {
+    color: #ffb03f;
+}

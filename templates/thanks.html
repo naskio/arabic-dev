@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{#TODO: make it mobile friendly#}
+{% block menu %}
+    {% include 'partials/menu.html' with page='thanks' %}
+{% endblock %}
+
+{% block content %}
+    <div class="pt-5">
+        <h2 class="text-center mt-5">Thanks for your contribution,
+            <a class="text-black-50" href="{% url 'HOME_URL' %}">return to the home page from here</a>
+        </h2>
+    </div>
+{% endblock %}
