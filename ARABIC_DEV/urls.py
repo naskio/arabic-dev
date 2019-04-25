@@ -15,31 +15,15 @@ Including another URLconf
 """
 # from django.conf.urls.static import serve
 from django.contrib import admin
-from django.urls import path  # include
+from django.urls import path
 from apps.stemmers_comparer import views
-from rest_framework import routers
-from django.conf.urls import include, url
-
-
-
-router = routers.DefaultRouter()
-router.register(r'admin/requirements', views.RequirementViewSet)
-router.register(r'admin/feautures', views.FeatureViewSet)
-router.register(r'admin/authors', views.AuthorViewSet)
-router.register(r'admin/languages', views.ProgrammingLanguageViewSet)
-router.register(r'admin/stemmers', views.StemmerViewSet)
-router.register(r'admin/userratings', views.UserRatingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', include(router.urls)),
-    path('stem-words/<stemmer_name>', views.stem_view, name='stem_words'),
-    path('get-stemmer/<stemmer_name>', views.get_stemmer, name='get_stemmer'),
-    path('get-stemmers', views.get_stemmers, name='get_stemmers'),
-    path('get-stemmers/<programming_language>', views.get_stemmers, name='filter_stemmers'),
-    path('rate', views.rate, name='post_rate'),
-    path('get-rates/<stemmer_name>', views.rate, name='get_rates'),
     path('', views.HomeView.as_view(), name='HOME_URL'),
-    path('stemmers/', views.get_stemmers, name='STEMMERS_URL'),
-
+    path('stemmers/', views.stemmers_view, name='STEMMERS_URL'),
+    path('stemmer/<display_name>/', views.StemmerView.as_view(), name='STEMMER_URL'),
+    path('stemmer/review/<display_name>/', views.post_review_view, name='POST_REVIEW_URL'),
+    path('api/stemmer/<display_name>/', views.stem_view, name='STEMMER_API'),
+    path('api/stemmers/', views.stems_view, name='STEMMERS_API'),
 ]
