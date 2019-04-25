@@ -164,7 +164,7 @@
   },
   {
     "model": "stemmers_comparer.stemmer",
-    "pk": "alkhalil_morph_sys",
+    "pk": "alkhalil_morph_sys_stemmer",
     "fields": {
       "display_name": "Al Khalil Morpho Sys Stemmer",
       "is_enabled": true,
@@ -173,6 +173,8 @@
       "documentation_link": "http://oujda-nlp-team.net/en/programms/alkhalil-morphology-2-en/?lang=en",
       "download_link": "http://resources.oujda-nlp-team.net:9090/home#data1",
       "how_to_use": "# -*- coding: utf-8 -*-\r\nimport alkhalilMorphoSysStemmer\r\n\r\n# unicode input\r\nstring = '\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n# return an array\r\nstems_list = alkhalilMorphoSysStemmer.stem(string)",
+      "count": 0,
+      "average": "0.00000",
       "authors": [
         1,
         2,
@@ -190,7 +192,30 @@
   },
   {
     "model": "stemmers_comparer.stemmer",
-    "pk": "arabic_light_stemmer",
+    "pk": "arabic_processing_cog_stemmer",
+    "fields": {
+      "display_name": "Arabic Processing Cog",
+      "is_enabled": true,
+      "license": "MIT License",
+      "description": "A Python package that do stemming, tokenization, sentence breaking, segmentation, normalization, POS tagging for Arabic language.",
+      "documentation_link": "https://github.com/disooqi/ArabicProcessingCog",
+      "download_link": "https://github.com/disooqi/ArabicProcessingCog",
+      "how_to_use": "from arabic_processing_cog.tokenization import ArabicTokenizer as arabic_tokenizer\r\nfrom arabic_processing_cog.stemming import Light10stemmer as arabic_processing_cog_stemmer\r\n\r\nstring = '\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n  for token in arabic_tokenizer.tokenize(string):\r\n    stem_word = arabic_processing_cog_stemmer.stem_token(token)\r\n    print(stem_word)",
+      "count": 0,
+      "average": "0.00000",
+      "authors": [
+        6
+      ],
+      "programming_languages": [
+        "Python"
+      ],
+      "requirements": [],
+      "features": []
+    }
+  },
+  {
+    "model": "stemmers_comparer.stemmer",
+    "pk": "assems_arabic_light_stemmer",
     "fields": {
       "display_name": "Assem's Arabic Light Stemmer",
       "is_enabled": true,
@@ -199,6 +224,8 @@
       "documentation_link": "https://arabicstemmer.com/",
       "download_link": "https://arabicstemmer.com/",
       "how_to_use": "from snowballstemmer import stemmer\r\n\r\nar_stemmer = stemmer(\"arabic\")\r\nar_stemmer.stemWord(u\"\u0641\u0633\u0645\u064a\u062a\u0645\u0648\u0647\u0627\")",
+      "count": 0,
+      "average": "0.00000",
       "authors": [
         5
       ],
@@ -217,28 +244,7 @@
   },
   {
     "model": "stemmers_comparer.stemmer",
-    "pk": "arabic_processing_cog",
-    "fields": {
-      "display_name": "Arabic Processing Cog",
-      "is_enabled": true,
-      "license": "MIT License",
-      "description": "A Python package that do stemming, tokenization, sentence breaking, segmentation, normalization, POS tagging for Arabic language.",
-      "documentation_link": "https://github.com/disooqi/ArabicProcessingCog",
-      "download_link": "https://github.com/disooqi/ArabicProcessingCog",
-      "how_to_use": "from arabic_processing_cog.tokenization import ArabicTokenizer as arabic_tokenizer\r\nfrom arabic_processing_cog.stemming import Light10stemmer as arabic_processing_cog_stemmer\r\n\r\nstring = '\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n  for token in arabic_tokenizer.tokenize(string):\r\n    stem_word = arabic_processing_cog_stemmer.stem_token(token)\r\n    print(stem_word)",
-      "authors": [
-        6
-      ],
-      "programming_languages": [
-        "Python"
-      ],
-      "requirements": [],
-      "features": []
-    }
-  },
-  {
-    "model": "stemmers_comparer.stemmer",
-    "pk": "farasa",
+    "pk": "farasa_stemmer",
     "fields": {
       "display_name": "Farasa",
       "is_enabled": true,
@@ -247,6 +253,8 @@
       "documentation_link": "http://qatsdemo.cloudapp.net/farasa/",
       "download_link": "http://qatsdemo.cloudapp.net/farasa/",
       "how_to_use": "# -*- coding: utf-8 -*-\r\n\r\nfrom farasaStemmer import FarasaStemmer as farasa_stemmer\r\n\r\n# unicode input\r\nstring = u'\u0645\u0643\u062a\u0628\u0629 \u0644\u0645\u0639\u0627\u0644\u062c\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629  \u0648\u062a\u062c\u0630\u064a\u0639\u0647\u0627'\r\n# return an array\r\nstems_list = farasa_stemmer.stem(farasa_stemmer, string)",
+      "count": 0,
+      "average": "0.00000",
       "authors": [
         7,
         8
@@ -258,492 +266,6 @@
         3
       ],
       "features": []
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 1,
-    "fields": {
-      "name": "Can add log entry",
-      "content_type": 1,
-      "codename": "add_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 2,
-    "fields": {
-      "name": "Can change log entry",
-      "content_type": 1,
-      "codename": "change_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 3,
-    "fields": {
-      "name": "Can delete log entry",
-      "content_type": 1,
-      "codename": "delete_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 4,
-    "fields": {
-      "name": "Can view log entry",
-      "content_type": 1,
-      "codename": "view_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 5,
-    "fields": {
-      "name": "Can add permission",
-      "content_type": 2,
-      "codename": "add_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 6,
-    "fields": {
-      "name": "Can change permission",
-      "content_type": 2,
-      "codename": "change_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 7,
-    "fields": {
-      "name": "Can delete permission",
-      "content_type": 2,
-      "codename": "delete_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 8,
-    "fields": {
-      "name": "Can view permission",
-      "content_type": 2,
-      "codename": "view_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 9,
-    "fields": {
-      "name": "Can add group",
-      "content_type": 3,
-      "codename": "add_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 10,
-    "fields": {
-      "name": "Can change group",
-      "content_type": 3,
-      "codename": "change_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 11,
-    "fields": {
-      "name": "Can delete group",
-      "content_type": 3,
-      "codename": "delete_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 12,
-    "fields": {
-      "name": "Can view group",
-      "content_type": 3,
-      "codename": "view_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 13,
-    "fields": {
-      "name": "Can add user",
-      "content_type": 4,
-      "codename": "add_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 14,
-    "fields": {
-      "name": "Can change user",
-      "content_type": 4,
-      "codename": "change_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 15,
-    "fields": {
-      "name": "Can delete user",
-      "content_type": 4,
-      "codename": "delete_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 16,
-    "fields": {
-      "name": "Can view user",
-      "content_type": 4,
-      "codename": "view_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 17,
-    "fields": {
-      "name": "Can add content type",
-      "content_type": 5,
-      "codename": "add_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 18,
-    "fields": {
-      "name": "Can change content type",
-      "content_type": 5,
-      "codename": "change_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 19,
-    "fields": {
-      "name": "Can delete content type",
-      "content_type": 5,
-      "codename": "delete_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 20,
-    "fields": {
-      "name": "Can view content type",
-      "content_type": 5,
-      "codename": "view_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 21,
-    "fields": {
-      "name": "Can add session",
-      "content_type": 6,
-      "codename": "add_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 22,
-    "fields": {
-      "name": "Can change session",
-      "content_type": 6,
-      "codename": "change_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 23,
-    "fields": {
-      "name": "Can delete session",
-      "content_type": 6,
-      "codename": "delete_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 24,
-    "fields": {
-      "name": "Can view session",
-      "content_type": 6,
-      "codename": "view_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 25,
-    "fields": {
-      "name": "Can add author",
-      "content_type": 7,
-      "codename": "add_author"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 26,
-    "fields": {
-      "name": "Can change author",
-      "content_type": 7,
-      "codename": "change_author"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 27,
-    "fields": {
-      "name": "Can delete author",
-      "content_type": 7,
-      "codename": "delete_author"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 28,
-    "fields": {
-      "name": "Can view author",
-      "content_type": 7,
-      "codename": "view_author"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 29,
-    "fields": {
-      "name": "Can add feature",
-      "content_type": 8,
-      "codename": "add_feature"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 30,
-    "fields": {
-      "name": "Can change feature",
-      "content_type": 8,
-      "codename": "change_feature"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 31,
-    "fields": {
-      "name": "Can delete feature",
-      "content_type": 8,
-      "codename": "delete_feature"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 32,
-    "fields": {
-      "name": "Can view feature",
-      "content_type": 8,
-      "codename": "view_feature"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 33,
-    "fields": {
-      "name": "Can add programming language",
-      "content_type": 9,
-      "codename": "add_programminglanguage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 34,
-    "fields": {
-      "name": "Can change programming language",
-      "content_type": 9,
-      "codename": "change_programminglanguage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 35,
-    "fields": {
-      "name": "Can delete programming language",
-      "content_type": 9,
-      "codename": "delete_programminglanguage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 36,
-    "fields": {
-      "name": "Can view programming language",
-      "content_type": 9,
-      "codename": "view_programminglanguage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 37,
-    "fields": {
-      "name": "Can add requirement",
-      "content_type": 10,
-      "codename": "add_requirement"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 38,
-    "fields": {
-      "name": "Can change requirement",
-      "content_type": 10,
-      "codename": "change_requirement"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 39,
-    "fields": {
-      "name": "Can delete requirement",
-      "content_type": 10,
-      "codename": "delete_requirement"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 40,
-    "fields": {
-      "name": "Can view requirement",
-      "content_type": 10,
-      "codename": "view_requirement"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 41,
-    "fields": {
-      "name": "Can add stemmer",
-      "content_type": 11,
-      "codename": "add_stemmer"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 42,
-    "fields": {
-      "name": "Can change stemmer",
-      "content_type": 11,
-      "codename": "change_stemmer"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 43,
-    "fields": {
-      "name": "Can delete stemmer",
-      "content_type": 11,
-      "codename": "delete_stemmer"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 44,
-    "fields": {
-      "name": "Can view stemmer",
-      "content_type": 11,
-      "codename": "view_stemmer"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 45,
-    "fields": {
-      "name": "Can add user rating",
-      "content_type": 12,
-      "codename": "add_userrating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 46,
-    "fields": {
-      "name": "Can change user rating",
-      "content_type": 12,
-      "codename": "change_userrating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 47,
-    "fields": {
-      "name": "Can delete user rating",
-      "content_type": 12,
-      "codename": "delete_userrating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 48,
-    "fields": {
-      "name": "Can view user rating",
-      "content_type": 12,
-      "codename": "view_userrating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 49,
-    "fields": {
-      "name": "Can add rating",
-      "content_type": 13,
-      "codename": "add_rating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 50,
-    "fields": {
-      "name": "Can change rating",
-      "content_type": 13,
-      "codename": "change_rating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 51,
-    "fields": {
-      "name": "Can delete rating",
-      "content_type": 13,
-      "codename": "delete_rating"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 52,
-    "fields": {
-      "name": "Can view rating",
-      "content_type": 13,
-      "codename": "view_rating"
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 1,
-    "fields": {
-      "password": "pbkdf2_sha256$150000$cThYXk64O34z$l7OTDLRmD8bvhnZqPKiyiCSZvLLcZVlQZ/fW/WANyA4=",
-      "last_login": "2019-04-23T16:04:24.103Z",
-      "is_superuser": true,
-      "username": "mehdi",
-      "first_name": "",
-      "last_name": "",
-      "email": "admin@gmail.com",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2019-04-23T16:04:10.194Z",
-      "groups": [],
-      "user_permissions": []
     }
   }
 ]
