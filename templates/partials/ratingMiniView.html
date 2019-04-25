@@ -1,0 +1,24 @@
+{% load static %}
+{#TODO: make it mobile friendly#}
+{% load mathfilters %}
+<div class="rating d-inline-block">
+    {% if not hide_average %}
+        <h6 class="d-inline align-middle">{{ average|floatformat:1 }}</h6>
+    {% endif %}
+    {% for i in "0"|ljust:5 %}
+        {% if forloop.counter <= average %}
+            <img class="rating-star align-middle" src="{% static 'resources/icons/star.svg' %}"
+                 alt="rating">
+        {% elif forloop.counter|sub:0.5 <= average %}
+            <img class="rating-star align-middle" src="{% static 'resources/icons/star-half.svg' %}"
+                 alt="rating">
+        {% else %}
+            <img class="rating-star align-middle"
+                 src="{% static 'resources/icons/star-empty.svg' %}"
+                 alt="rating">
+        {% endif %}
+    {% endfor %}
+    {% if not hide_average %}
+        <h6 class="d-inline align-middle">({{ count }})</h6>
+    {% endif %}
+</div>
