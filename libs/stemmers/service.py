@@ -66,15 +66,14 @@ def tashaphyne_stemmer(string):
     return tashaphyneStemmer.stem(string.encode().decode())
 
 
-# TODO: add the other stemmers
 STEMMERS = {
-    'alkhalil_morph_sys': alkhalil_morpho_sys_stemmer,
-    'arabic_processing_cog': arabic_processing_cog_stemmer,
+    'alkhalil_morph_sys_stemmer': alkhalil_morpho_sys_stemmer,
+    'arabic_processing_cog_stemmer': arabic_processing_cog_stemmer,
     'Arabic_stemming_toolkit_v1': ast1,
     'Arabic_stemming_toolkit_v2': ast2,
     'Arabic_stemming_toolkit_v3': ast3,
-    'farasa': farasa_stemmer,
-    'arabic_light_stemmer': assems_arabic_light_stemmer,
+    'farasa_stemmer': farasa_stemmer,
+    'assems_arabic_light_stemmer': assems_arabic_light_stemmer,
     'ntlk_stemmer': ntlk_stemmer,
     'qutuf_stemmer': qutuf_stemmer,
     'shereen_khoja_stemmer': shereen_khoja_stemmer,
